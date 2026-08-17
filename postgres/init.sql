@@ -129,7 +129,7 @@ ON CONFLICT (outlet_key) DO UPDATE SET
     operational_hours = EXCLUDED.operational_hours,
     pricelist_photo_url = EXCLUDED.pricelist_photo_url;
 
--- Seed Knowledge Base
+-- Seed Knowledge Base (Master Version from bot IA revisi.xlsx)
 INSERT INTO knowledge (category, question_pattern, answer_text, keywords) VALUES
 ('jamops', 'Jam Operasional / Jam Buka Outlet', 
 '⏰ Jam Operasional EL Group:
@@ -209,6 +209,18 @@ Link kartu digital: https://app.elgroupapp.com/', 'member, registrasi, daftar, c
 
 ('contact', 'Kontak Reservasi & Admin', 
 '📞 KONTAK RESERVASI RESMI:
-• Madam Tika: https://wa.me/qr/O6QEVDUNDJB4G1 (@MadamTika)
-• Kim Asst Norte: https://wa.me/qr/XQRRH3QXZCZAA1 (@kimasst)
-• Dori Asst Fenix: https://wa.me/qr/KSTLRQATOQ2PC1 (@Doriasst)', 'contact, kontak, admin, tika, whatsapp, wa, telegram');
+• Booking Umum / Outlet Lain: Madam Tika (https://wa.me/qr/O6QEVDUNDJB4G1 / Telegram: @MadamTika)
+• Booking EL NORTE: Kim Asst Norte (https://wa.me/qr/XQRRH3QXZCZAA1 / Telegram: @kimasst)
+• Booking EL FENIX: Dori Asst Fenix (https://wa.me/qr/KSTLRQATOQ2PC1 / Telegram: @Doriasst)', 'contact, kontak, admin, tika, whatsapp, wa, telegram, norte, fenix'),
+
+('lost_item', 'Barang Tertinggal / Lost and Found',
+' Jangan khawatir kak! Silakan informasikan data berikut:
+- Nama:
+- Cabang:
+- Tanggal kunjungan:
+- Jam kunjungan:
+- Barang yang tertinggal:
+Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengecekan.', 'barang, ketinggalan, tertinggal, lost, found, hp, dompet'),
+
+('ktp', 'Persyaratan KTP / Identitas',
+'Untuk kebutuhan tertentu, identitas/KTP dapat diperlukan sesuai kebijakan outlet. Silakan sebutkan outlet yang ingin dikunjungi untuk informasi lebih lanjut.', 'ktp, identitas, id, bawa ktp');
