@@ -1,0 +1,71 @@
+{
+  "name": "1. Telegram Menu & Keyboard Router",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "telegram-webhook",
+        "options": {}
+      },
+      "id": "node-telegram-webhook",
+      "name": "Telegram Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.message.text || $json.body.callback_query.data || '' }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "node-filter-input",
+      "name": "Has Text or Callback",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [320, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract Telegram payload fields\nconst body = $input.item.json.body;\nconst callback = body.callback_query;\nconst message = body.message;\n\nlet chatId = 0;\nlet fromId = 0;\nlet text = '';\nlet isCallback = false;\nlet callbackData = '';\nlet callbackId = '';\n\nif (callback) {\n  isCallback = true;\n  chatId = callback.message.chat.id;\n  fromId = callback.from.id;\n  callbackData = callback.data || '';\n  callbackId = callback.id || '';\n} else if (message) {\n  chatId = message.chat.id;\n  fromId = message.from.id;\n  text = (message.text || '').trim();\n}\n\nreturn {\n  chatId,\n  fromId,\n  text,\n  isCallback,\n  callbackData,\n  callbackId,\n  chatType: message ? message.chat.type : 'private'\n};"
+      },
+      "id": "node-parse-telegram",
+      "name": "Parse Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [540, 300]
+    }
+  ],
+  "connections": {
+    "Telegram Webhook": {
+      "main": [
+        [
+          {
+            "node": "Has Text or Callback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Text or Callback": {
+      "main": [
+        [
+          {
+            "node": "Parse Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

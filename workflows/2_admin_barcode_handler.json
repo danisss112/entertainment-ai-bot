@@ -1,0 +1,55 @@
+{
+  "name": "2. Barcode & Admin Management",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "node-schedule-cutoff",
+      "name": "02:00 WIB Barcode Expire Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [100, 200]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "-- Query active barcodes vs 02:00 WIB Cutoff\nSELECT b.outlet_key, o.name, b.updated_at, \n       CASE WHEN b.updated_at >= (CURRENT_DATE - INTERVAL '1 day' + TIME '02:00:00') THEN true ELSE false END AS is_valid\nFROM barcodes b\nJOIN outlets o ON b.outlet_key = o.outlet_key;"
+      },
+      "id": "node-db-check-barcode",
+      "name": "Check Barcode Status",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [340, 200],
+      "credentials": {
+        "postgres": {
+          "id": "postgres-cred-id",
+          "name": "PostgreSQL Account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "02:00 WIB Barcode Expire Check": {
+      "main": [
+        [
+          {
+            "node": "Check Barcode Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

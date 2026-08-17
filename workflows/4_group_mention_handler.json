@@ -1,0 +1,32 @@
+{
+  "name": "4. Telegram Group Mention Handler",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.chatType }}",
+              "operation": "regex",
+              "value2": "(group|supergroup)"
+            },
+            {
+              "value1": "={{ $json.text }}",
+              "operation": "contains",
+              "value2": "@EntertainmentBot"
+            }
+          ]
+        }
+      },
+      "id": "node-check-group-mention",
+      "name": "Is Group Mention",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [200, 200]
+    }
+  ],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

@@ -1,0 +1,19 @@
+# Environment & Confidential Credentials
+.env
+*.env
+
+# Operating System & IDE Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Docker persistent volume local backups
+postgres_data/
+n8n_data/
+certbot_certs/
+certbot_www/
+
+# Temp & Log files
+*.log
+scratch/
