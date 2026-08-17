@@ -47,6 +47,21 @@ CREATE TABLE IF NOT EXISTS barcodes (
     updated_by BIGINT REFERENCES admins(telegram_id)
 );
 
+-- 4b. BOT_BARCODES TABLE (Used by n8n workflow - standalone, no FK constraint)
+CREATE TABLE IF NOT EXISTS bot_barcodes (
+    outlet_key VARCHAR(50) PRIMARY KEY,
+    file_id TEXT NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_by BIGINT
+);
+
+-- 4c. BOT_ADMIN_STATE TABLE (Tracks which outlet Admin selected before sending photo)
+CREATE TABLE IF NOT EXISTS bot_admin_state (
+    admin_id BIGINT PRIMARY KEY,
+    outlet_key VARCHAR(50) NOT NULL,
+    selected_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- 5. TALENTS TABLE
 CREATE TABLE IF NOT EXISTS talents (
     id SERIAL PRIMARY KEY,
