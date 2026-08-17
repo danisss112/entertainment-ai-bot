@@ -217,19 +217,21 @@
     },
     {
       "parameters": {
+        "model": "llama-3.3-70b-versatile",
         "options": {
+          "baseURL": "https://api.groq.com/openai/v1",
           "temperature": 0.3
         }
       },
-      "id": "node-gemini-model",
-      "name": "Google Gemini Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "id": "node-groq-model",
+      "name": "Groq Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
       "position": [800, 700],
       "credentials": {
-        "googlePalmApi": {
-          "id": "gemini-cred",
-          "name": "Google Gemini Account"
+        "openAiApi": {
+          "id": "groq-cred",
+          "name": "Groq Account"
         }
       }
     },
@@ -281,7 +283,7 @@
     "DB Get Admin State": { "main": [[{ "node": "DB Save Barcode", "type": "main", "index": 0 }]] },
     "DB Save Barcode": { "main": [[{ "node": "Confirm Barcode Saved", "type": "main", "index": 0 }]] },
     "Is AI Needed": { "main": [[{ "node": "AI Assistant Agent", "type": "main", "index": 0 }]] },
-    "Google Gemini Chat Model": { "ai_languageModel": [[{ "node": "AI Assistant Agent", "type": "ai_languageModel", "index": 0 }]] },
+    "Groq Chat Model": { "ai_languageModel": [[{ "node": "AI Assistant Agent", "type": "ai_languageModel", "index": 0 }]] },
     "AI Assistant Agent": { "main": [[{ "node": "Send AI Reply Telegram API", "type": "main", "index": 0 }]] }
   },
   "settings": { "executionOrder": "v1" }
