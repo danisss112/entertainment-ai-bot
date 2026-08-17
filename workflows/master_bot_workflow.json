@@ -77,6 +77,8 @@
     },
     {
       "parameters": {
+        "resource": "message",
+        "operation": "sendPhoto",
         "chatId": "={{ $json.chatId }}",
         "file": "={{ $json.responsePayload.photo }}",
         "additionalFields": {
@@ -100,6 +102,8 @@
     },
     {
       "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
         "chatId": "={{ $json.chatId }}",
         "text": "={{ $json.responsePayload.text }}",
         "additionalFields": {
@@ -154,6 +158,8 @@
     },
     {
       "parameters": {
+        "resource": "message",
+        "operation": "sendMessage",
         "chatId": "={{ $json.chatId }}",
         "text": "={{ $json.output }}",
         "additionalFields": {
