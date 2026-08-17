@@ -252,7 +252,7 @@
         "url": "https://api.telegram.org/bot8791438411:AAFKzCvX3g4xh3IW6V5jqzoc7SxDOqR_Pns/sendMessage",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ chat_id: $json.chatId, text: $json.output, parse_mode: 'HTML' }) }}",
+        "jsonBody": "={{ JSON.stringify({ chat_id: $('Parse & Send Direct Reply').item.json.chatId, text: $json.output, parse_mode: 'HTML' }) }}",
         "options": {}
       },
       "id": "node-send-ai-reply-http",
