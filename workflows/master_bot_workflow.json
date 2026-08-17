@@ -238,7 +238,10 @@
     },
     {
       "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKeyType": "customKey",
         "sessionKey": "={{ $('Parse & Send Direct Reply').item.json.chatId }}",
+        "sessionId": "={{ $('Parse & Send Direct Reply').item.json.chatId }}",
         "contextWindowLength": 10
       },
       "id": "node-window-memory",
