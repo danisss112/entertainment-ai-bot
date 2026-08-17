@@ -15,62 +15,76 @@
     },
     {
       "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.body.message.text || $json.body.callback_query.data || '' }}",
-              "operation": "isNotEmpty"
-            }
-          ]
-        }
-      },
-      "id": "node-filter-input",
-      "name": "Has Text or Callback",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [300, 300]
-    },
-    {
-      "parameters": {
-        "jsCode": "const body = $input.item.json.body;\nconst callback = body.callback_query;\nconst message = body.message;\n\nlet chatId = 0;\nlet fromId = 0;\nlet text = '';\nlet isCallback = false;\nlet callbackData = '';\n\nif (callback) {\n  isCallback = true;\n  chatId = callback.message.chat.id;\n  fromId = callback.from.id;\n  callbackData = callback.data || '';\n} else if (message) {\n  chatId = message.chat.id;\n  fromId = message.from.id;\n  text = (message.text || '').trim();\n}\n\nreturn {\n  chatId,\n  fromId,\n  text,\n  isCallback,\n  callbackData\n};"
+        "jsCode": "const body = $input.item.json.body;\nconst callback = body.callback_query;\nconst message = body.message;\n\nlet chatId = 0;\nlet fromId = 0;\nlet text = '';\nlet isCallback = false;\nlet callbackData = '';\n\nif (callback) {\n  isCallback = true;\n  chatId = callback.message.chat.id;\n  fromId = callback.from.id;\n  callbackData = callback.data || '';\n} else if (message) {\n  chatId = message.chat.id;\n  fromId = message.from.id;\n  text = (message.text || '').trim();\n}\n\nconst isStart = text === '/start' || text.toLowerCase() === 'menu' || callbackData === 'menu_start';\n\nreturn {\n  chatId,\n  fromId,\n  text,\n  isCallback,\n  callbackData,\n  isStart\n};"
       },
       "id": "node-parse-telegram",
       "name": "Parse Keyboards & Routing",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
-      "position": [500, 300]
+      "position": [300, 300]
     },
     {
       "parameters": {
-        "rule": {
-          "interval": [
+        "conditions": {
+          "boolean": [
             {
-              "field": "hours",
-              "hoursInterval": 1
+              "value1": "={{ $json.isStart }}",
+              "value2": true
             }
           ]
         }
       },
-      "id": "node-schedule-cutoff",
-      "name": "02:00 WIB Barcode Expire Check",
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.1,
-      "position": [300, 500]
+      "id": "node-check-start",
+      "name": "Is Start or Menu",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [500, 300]
     },
     {
       "parameters": {
-        "operation": "executeQuery",
-        "query": "SELECT b.outlet_key, o.name, b.updated_at FROM barcodes b JOIN outlets o ON b.outlet_key = o.outlet_key;"
+        "chatId": "={{ $json.chatId }}",
+        "text": "👋 <b>Selamat Datang di EL GROUP AI Assistant!</b>\n\nLayanan resmi informasi & reservasi Spa, Karaoke KTV, dan Club EL Group.\n\nSilakan pilih menu di bawah ini:",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  { "text": "📍 Daftar Outlet & Lokasi", "callbackData": "btn_outlets" },
+                  { "text": "⏰ Jam Operasional", "callbackData": "btn_jamops" }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  { "text": "💎 Price List & Paket", "callbackData": "btn_pricelist" },
+                  { "text": "🪪 Daftar Member", "callbackData": "btn_member" }
+                ]
+              }
+            },
+            {
+              "row": {
+                "buttons": [
+                  { "text": "📞 Reservasi / Booking", "callbackData": "btn_booking" }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
       },
-      "id": "node-db-check-barcode",
-      "name": "Check Barcode Status",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.3,
-      "position": [500, 500],
+      "id": "node-send-start-menu",
+      "name": "Send Start Menu Keyboard",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [750, 200],
       "credentials": {
-        "postgres": {
-          "id": "postgres-cred",
-          "name": "Postgres Account"
+        "telegramApi": {
+          "id": "telegram-cred",
+          "name": "Telegram Bot Account"
         }
       }
     },
@@ -85,7 +99,7 @@
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
-      "position": [400, 700],
+      "position": [600, 500],
       "credentials": {
         "openAiApi": {
           "id": "openai-cred",
@@ -96,7 +110,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json.text }}",
+        "text": "={{ $json.text || $json.callbackData }}",
         "hasSystemPrompt": true,
         "systemPrompt": "=Anda adalah EL GROUP AI Customer Service (Spa & Karaoke Jakarta). Sapa pengguna dengan 'kak', ramah, sopan, natural, profesional.\n\nKONTEN OUTLET & JAM OPS:\n- EL CENTRO, EL SPA PANGJAY, EL SEVEN CLUB (Gajah Mada)\n- EL NORTE (PIK)\n- EL FENIX, EL SPA GADING (Kelapa Gading)\n- EL ORCA (GLC)\n- EL CASA (GADSER)\n- EL MEMENTO (JAKSEL)\n\nATURAN ROUTING KONTAK BOOKING:\n- Booking EL NORTE -> Kim Asst Norte (@kimasst / WA: https://wa.me/qr/XQRRH3QXZCZAA1)\n- Booking EL FENIX -> Dori Asst Fenix (@Doriasst / WA: https://wa.me/qr/KSTLRQATOQ2PC1)\n- Booking Umum / Outlet Lain -> Madam Tika (@MadamTika / WA: https://wa.me/qr/O6QEVDUNDJB4G1)\n\nANTI-HALUSINASI: Jangan mengarang harga, promo, WA, Telegram, alamat, room, atau ketersediaan therapist jika tidak ada data.\nJIKA REQUIRING HUMAN ADMIN: Sertakan tag [NEED_ADMIN] di bagian paling akhir respon Anda."
       },
@@ -104,57 +118,21 @@
       "name": "AI Assistant Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.6,
-      "position": [650, 700]
+      "position": [750, 450]
     },
     {
       "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.text }}",
-              "operation": "contains",
-              "value2": "@EntertainmentBot"
-            }
-          ]
-        }
-      },
-      "id": "node-check-group-mention",
-      "name": "Is Group Mention",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [850, 600]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.output }}",
-              "operation": "contains",
-              "value2": "[NEED_ADMIN]"
-            }
-          ]
-        }
-      },
-      "id": "node-detect-need-admin",
-      "name": "Detect NEED_ADMIN",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [850, 800]
-    },
-    {
-      "parameters": {
-        "chatId": "5437246207",
-        "text": "=🔥 <b>NEW BOOKING LEAD / NEED ADMIN HANDOVER</b>\n\n👤 <b>Customer:</b> {{ $json.text }}\n🤖 <b>AI Context:</b> Handover dipicu otomatis\n\n👉 <i>Silakan hubungi customer ini untuk reservasi.</i>",
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ $json.output }}",
         "additionalFields": {
           "parse_mode": "HTML"
         }
       },
-      "id": "node-notify-admin",
-      "name": "Send Admin Alert Telegram",
+      "id": "node-send-telegram-reply",
+      "name": "Send Reply Telegram",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
-      "position": [1100, 800],
+      "position": [1000, 450],
       "credentials": {
         "telegramApi": {
           "id": "telegram-cred",
@@ -165,17 +143,6 @@
   ],
   "connections": {
     "Telegram Webhook": {
-      "main": [
-        [
-          {
-            "node": "Has Text or Callback",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Has Text or Callback": {
       "main": [
         [
           {
@@ -190,18 +157,25 @@
       "main": [
         [
           {
-            "node": "AI Assistant Agent",
+            "node": "Is Start or Menu",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "02:00 WIB Barcode Expire Check": {
+    "Is Start or Menu": {
       "main": [
         [
           {
-            "node": "Check Barcode Status",
+            "node": "Send Start Menu Keyboard",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Assistant Agent",
             "type": "main",
             "index": 0
           }
@@ -223,23 +197,7 @@
       "main": [
         [
           {
-            "node": "Is Group Mention",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Detect NEED_ADMIN",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Detect NEED_ADMIN": {
-      "main": [
-        [
-          {
-            "node": "Send Admin Alert Telegram",
+            "node": "Send Reply Telegram",
             "type": "main",
             "index": 0
           }
