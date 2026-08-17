@@ -64,6 +64,7 @@
         "query": "SELECT file_id, updated_at FROM bot_barcodes WHERE outlet_key = '{{ $json.outletKey }}' ORDER BY updated_at DESC LIMIT 1",
         "additionalFields": {}
       },
+      "alwaysOutputData": true,
       "id": "node-db-get-barcode",
       "name": "DB Get Barcode",
       "type": "n8n-nodes-base.postgres",
@@ -156,6 +157,7 @@
         "query": "SELECT outlet_key FROM bot_admin_state WHERE admin_id = {{ $json.fromId }}",
         "additionalFields": {}
       },
+      "alwaysOutputData": true,
       "id": "node-db-get-admin-state",
       "name": "DB Get Admin State",
       "type": "n8n-nodes-base.postgres",
