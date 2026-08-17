@@ -13,7 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "127.0.0.1:5432:5432"
+      - "5432:5432"
     networks:
       - entertainment_net
 
@@ -29,10 +29,11 @@ services:
       - WEBHOOK_URL=https://${N8N_HOST:-n8n.madamtikael.id}/
       - GENERIC_TIMEZONE=Asia/Jakarta
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_DIAGNOSTICS_ENABLED=false
     volumes:
       - n8n_data:/home/node/.n8n
     ports:
-      - "127.0.0.1:5678:5678"
+      - "5678:5678"
     depends_on:
       - postgres
     networks:
@@ -43,8 +44,7 @@ services:
     container_name: entertainment_nginx
     restart: always
     ports:
-      - "80:80"
-      - "443:443"
+      - "8080:80"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - /etc/letsencrypt:/etc/letsencrypt:ro
