@@ -220,17 +220,16 @@
       "parameters": {
         "model": "llama-3.3-70b-versatile",
         "options": {
-          "baseURL": "https://api.groq.com/openai/v1",
           "temperature": 0.3
         }
       },
       "id": "node-groq-model",
       "name": "Groq Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
       "typeVersion": 1,
       "position": [800, 700],
       "credentials": {
-        "openAiApi": {
+        "groqApi": {
           "id": "groq-cred",
           "name": "Groq Account"
         }
