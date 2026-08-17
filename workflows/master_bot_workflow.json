@@ -50,23 +50,23 @@
             {
               "row": {
                 "buttons": [
-                  { "text": "📍 Daftar Outlet & Lokasi", "callbackData": "btn_outlets" },
-                  { "text": "⏰ Jam Operasional", "callbackData": "btn_jamops" }
+                  { "text": "📍 Daftar Outlet & Lokasi", "callback_data": "btn_outlets" },
+                  { "text": "⏰ Jam Operasional", "callback_data": "btn_jamops" }
                 ]
               }
             },
             {
               "row": {
                 "buttons": [
-                  { "text": "💎 Price List & Paket", "callbackData": "btn_pricelist" },
-                  { "text": "🪪 Daftar Member", "callbackData": "btn_member" }
+                  { "text": "💎 Price List & Paket", "callback_data": "btn_pricelist" },
+                  { "text": "🪪 Daftar Member", "callback_data": "btn_member" }
                 ]
               }
             },
             {
               "row": {
                 "buttons": [
-                  { "text": "📞 Reservasi / Booking", "callbackData": "btn_booking" }
+                  { "text": "📞 Reservasi / Booking", "callback_data": "btn_booking" }
                 ]
               }
             }
