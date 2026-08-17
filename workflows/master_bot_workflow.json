@@ -330,19 +330,58 @@
     },
     {
       "parameters": {
-        "jsCode": "const BOT_TOKEN = '8791438411:AAFKzCvX3g4xh3IW6V5jqzoc7SxDOqR_Pns';\nconst BASE_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;\n\nconst chatId = $('Parse & Send Direct Reply').item.json.chatId;\nconst messageThreadId = $('Parse & Send Direct Reply').item.json.messageThreadId;\nlet aiOutput = ($input.item.json.output || '').trim();\n\n// Bersihkan kurung siku < > pada URL agar tidak merusak parser HTML Telegram\naiOutput = aiOutput.replace(/<(https?:\\/\\/[^>]+)>/g, '$1');\n\n// Konversi markdown **bold** & *italic* jika AI masih tidak sengaja memakainya\naiOutput = aiOutput.replace(/\\*\\*(.*?)\\*\\*/g, '<b>$1</b>');\naiOutput = aiOutput.replace(/\\*(.*?)\\*/g, '<i>$1</i>');\n\nconst imageUrlMatch = aiOutput.match(/https:\\/\\/tikael\\.kereaktif\\.id\\/[^\\s\\)\"]+\\.(jpg|jpeg|png)/i);\n\nasync function sendMsg(bodyObj) {\n  if (messageThreadId) bodyObj.message_thread_id = messageThreadId;\n  return await this.helpers.httpRequest({\n    method: 'POST',\n    url: `${BASE_URL}/sendMessage`,\n    body: bodyObj,\n    json: true\n  });\n}\n\nasync function sendPic(bodyObj) {\n  if (messageThreadId) bodyObj.message_thread_id = messageThreadId;\n  return await this.helpers.httpRequest({\n    method: 'POST',\n    url: `${BASE_URL}/sendPhoto`,\n    body: bodyObj,\n    json: true\n  });\n}\n\nif (imageUrlMatch) {\n  const imageUrl = imageUrlMatch[0];\n  // Strip raw photo URL from caption text so customers don't see tikael.kereaktif.id domain link!\n  let cleanCaption = aiOutput.replace(imageUrl, '').replace(/<https?:[^>]+>/g, '').trim();\n  const caption = cleanCaption.length > 0 && cleanCaption.length <= 1024 ? cleanCaption : undefined;\n  try {\n    await sendPic.call(this, { chat_id: chatId, photo: imageUrl, caption, parse_mode: 'HTML' });\n  } catch (e) {\n    await sendPic.call(this, { chat_id: chatId, photo: imageUrl, caption });\n  }\n  if (cleanCaption.length > 1024) {\n    try {\n      await sendMsg.call(this, { chat_id: chatId, text: cleanCaption, parse_mode: 'HTML' });\n    } catch (e) {\n      await sendMsg.call(this, { chat_id: chatId, text: cleanCaption });\n    }\n  }\n} else {\n  try {\n    await sendMsg.call(this, { chat_id: chatId, text: aiOutput, parse_mode: 'HTML' });\n  } catch (e) {\n    await sendMsg.call(this, { chat_id: chatId, text: aiOutput });\n  }\n}\n\nreturn { done: true };"
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "0 2 * * *"
+            }
+          ]
+        }
       },
-      "id": "node-send-ai-reply-smart",
-      "name": "Send AI Reply Smart",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "node-schedule-reset-barcode",
+      "name": "Schedule Reset Barcode 02:00 WIB",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
       "position": [
-        1200,
-        650
+        100,
+        -100
       ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "TRUNCATE TABLE bot_barcodes; TRUNCATE TABLE bot_admin_state;",
+        "additionalFields": {}
+      },
+      "id": "node-db-reset-barcodes",
+      "name": "DB Reset Barcodes Daily",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        350,
+        -100
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "postgres-cred",
+          "name": "Postgres EL Group"
+        }
+      }
     }
   ],
   "connections": {
+    "Schedule Reset Barcode 02:00 WIB": {
+      "main": [
+        [
+          {
+            "node": "DB Reset Barcodes Daily",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "Telegram Webhook": {
       "main": [
         [
