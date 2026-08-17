@@ -272,23 +272,23 @@
     },
     {
       "parameters": {
-        "modelName": "models/gemini-2.0-flash",
+        "model": "llama-3.3-70b-versatile",
         "options": {
           "temperature": 0.3
         }
       },
-      "id": "node-gemini-model",
-      "name": "Google Gemini Chat Model",
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "id": "node-groq-model",
+      "name": "Groq Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
       "typeVersion": 1,
       "position": [
         800,
         700
       ],
       "credentials": {
-        "googlePalmApi": {
-          "id": "google-gemini-cred",
-          "name": "Google Gemini(PaLM) Api account"
+        "groqApi": {
+          "id": "groq-cred",
+          "name": "Groq Account"
         }
       }
     },
@@ -325,6 +325,19 @@
       "typeVersion": 1.6,
       "position": [
         950,
+        650
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const BOT_TOKEN = '8791438411:AAFKzCvX3g4xh3IW6V5jqzoc7SxDOqR_Pns';\nconst BASE_URL = `https://api.telegram.org/bot${BOT_TOKEN}`;\n\nconst chatId = $('Parse & Send Direct Reply').item.json.chatId;\nconst messageThreadId = $('Parse & Send Direct Reply').item.json.messageThreadId;\nlet aiOutput = ($input.item.json.output || '').trim();\n\n// Bersihkan kurung siku < > pada URL agar tidak merusak parser HTML Telegram\naiOutput = aiOutput.replace(/<(https?:\\/\\/[^>]+)>/g, '$1');\n\n// Konversi markdown **bold** & *italic* jika AI masih tidak sengaja memakainya\naiOutput = aiOutput.replace(/\\*\\*(.*?)\\*\\*/g, '<b>$1</b>');\naiOutput = aiOutput.replace(/\\*(.*?)\\*/g, '<i>$1</i>');\n\nconst imageUrlMatch = aiOutput.match(/https:\\/\\/tikael\\.kereaktif\\.id\\/[^\\s\\)\"]+\\.(jpg|jpeg|png)/i);\n\nasync function sendMsg(bodyObj) {\n  if (messageThreadId) bodyObj.message_thread_id = messageThreadId;\n  return await this.helpers.httpRequest({\n    method: 'POST',\n    url: `${BASE_URL}/sendMessage`,\n    body: bodyObj,\n    json: true\n  });\n}\n\nasync function sendPic(bodyObj) {\n  if (messageThreadId) bodyObj.message_thread_id = messageThreadId;\n  return await this.helpers.httpRequest({\n    method: 'POST',\n    url: `${BASE_URL}/sendPhoto`,\n    body: bodyObj,\n    json: true\n  });\n}\n\nif (imageUrlMatch) {\n  const imageUrl = imageUrlMatch[0];\n  // Strip raw photo URL from caption text so customers don't see tikael.kereaktif.id domain link!\n  let cleanCaption = aiOutput.replace(imageUrl, '').replace(/<https?:[^>]+>/g, '').trim();\n  const caption = cleanCaption.length > 0 && cleanCaption.length <= 1024 ? cleanCaption : undefined;\n  try {\n    await sendPic.call(this, { chat_id: chatId, photo: imageUrl, caption, parse_mode: 'HTML' });\n  } catch (e) {\n    await sendPic.call(this, { chat_id: chatId, photo: imageUrl, caption });\n  }\n  if (cleanCaption.length > 1024) {\n    try {\n      await sendMsg.call(this, { chat_id: chatId, text: cleanCaption, parse_mode: 'HTML' });\n    } catch (e) {\n      await sendMsg.call(this, { chat_id: chatId, text: cleanCaption });\n    }\n  }\n} else {\n  try {\n    await sendMsg.call(this, { chat_id: chatId, text: aiOutput, parse_mode: 'HTML' });\n  } catch (e) {\n    await sendMsg.call(this, { chat_id: chatId, text: aiOutput });\n  }\n}\n\nreturn { done: true };"
+      },
+      "id": "node-send-ai-reply-smart",
+      "name": "Send AI Reply Smart",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1200,
         650
       ]
     },
@@ -518,7 +531,7 @@
         ]
       ]
     },
-    "Google Gemini Chat Model": {
+    "Groq Chat Model": {
       "ai_languageModel": [
         [
           {
