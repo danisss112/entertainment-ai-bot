@@ -28,7 +28,7 @@ Gunakan fitur checklist markdown (`- [x]`) untuk menandai setiap langkah yang se
 
 - [ ] **1.1. Buat Repository di GitHub**
   - Buka [GitHub.com](https://github.com) -> Klik **New Repository**.
-  - Nama Repo: `entertainment-ai-bot` (set ke **Private**).
+  - Nama Repo: `entertainment-ai-bot` (set ke **Private** atau **Public**).
   - Biarkan: `Add README` (Off), `Add .gitignore` (No .gitignore).
   - Klik **Create repository**. Salin URL repo Anda.
 
@@ -85,8 +85,8 @@ Gunakan fitur checklist markdown (`- [x]`) untuk menandai setiap langkah yang se
   - Jalankan di Terminal VPS (atau menu Terminal di dalam aaPanel):
     ```bash
     cd /www/wwwroot
-    git clone https://github.com/USERNAME_ANDA/entertainment-ai-bot.git entertainment-ai
-    cd /www/wwwroot/entertainment-ai
+    git clone https://github.com/USERNAME_ANDA/entertainment-ai-bot.git
+    cd /www/wwwroot/entertainment-ai-bot
     chmod +x deploy.sh
     ```
 
@@ -99,9 +99,9 @@ Gunakan fitur checklist markdown (`- [x]`) untuk menandai setiap langkah yang se
   - Tambahkan A Record: Subdomain `n8n` -> Target **IP Public VPS** Anda.
 
 - [ ] **3.2. Buat & Edit File `.env` di VPS**
-  - Jalankan di Terminal VPS (atau via File Manager aaPanel di `/www/wwwroot/entertainment-ai`):
+  - Jalankan di Terminal VPS (atau via File Manager aaPanel di `/www/wwwroot/entertainment-ai-bot`):
     ```bash
-    cd /www/wwwroot/entertainment-ai
+    cd /www/wwwroot/entertainment-ai-bot
     cp .env.example .env
     nano .env
     ```
@@ -136,7 +136,7 @@ Gunakan fitur checklist markdown (`- [x]`) untuk menandai setiap langkah yang se
 - [ ] **4.1. Start Container Docker**
   - Jalankan di VPS:
     ```bash
-    cd /www/wwwroot/entertainment-ai
+    cd /www/wwwroot/entertainment-ai-bot
     docker compose up -d
     ```
 
@@ -195,4 +195,4 @@ Gunakan fitur checklist markdown (`- [x]`) untuk menandai setiap langkah yang se
 
 🔄 **CARA UPDATE KODINGAN DI MASA DEPAN:**
 - **Di Laptop**: `git add .` -> `git commit -m "update"` -> `git push origin main`
-- **Di VPS**: `cd /www/wwwroot/entertainment-ai && ./deploy.sh`
+- **Di VPS**: `cd /www/wwwroot/entertainment-ai-bot && ./deploy.sh`
