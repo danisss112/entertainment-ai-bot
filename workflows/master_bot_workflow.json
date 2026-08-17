@@ -141,7 +141,7 @@
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "INSERT INTO bot_admin_state (admin_id, outlet_key, updated_at) VALUES ({{ $json.fromId }}, '{{ $json.outletKey }}', NOW()) ON CONFLICT (admin_id) DO UPDATE SET outlet_key = EXCLUDED.outlet_key, updated_at = NOW();",
+        "query": "INSERT INTO bot_admin_state (admin_id, outlet_key, selected_at) VALUES ({{ $json.fromId }}, '{{ $json.outletKey }}', NOW()) ON CONFLICT (admin_id) DO UPDATE SET outlet_key = EXCLUDED.outlet_key, selected_at = NOW();",
         "additionalFields": {}
       },
       "id": "node-db-set-admin-state",
