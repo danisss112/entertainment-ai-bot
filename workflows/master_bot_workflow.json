@@ -1,0 +1,253 @@
+{
+  "name": "EL Group Entertainment AI Assistant - Master Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "telegram-webhook",
+        "options": {}
+      },
+      "id": "node-telegram-webhook",
+      "name": "Telegram Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [100, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.message.text || $json.body.callback_query.data || '' }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "node-filter-input",
+      "name": "Has Text or Callback",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [300, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.item.json.body;\nconst callback = body.callback_query;\nconst message = body.message;\n\nlet chatId = 0;\nlet fromId = 0;\nlet text = '';\nlet isCallback = false;\nlet callbackData = '';\n\nif (callback) {\n  isCallback = true;\n  chatId = callback.message.chat.id;\n  fromId = callback.from.id;\n  callbackData = callback.data || '';\n} else if (message) {\n  chatId = message.chat.id;\n  fromId = message.from.id;\n  text = (message.text || '').trim();\n}\n\nreturn {\n  chatId,\n  fromId,\n  text,\n  isCallback,\n  callbackData\n};"
+      },
+      "id": "node-parse-telegram",
+      "name": "Parse Keyboards & Routing",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "node-schedule-cutoff",
+      "name": "02:00 WIB Barcode Expire Check",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [300, 500]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT b.outlet_key, o.name, b.updated_at FROM barcodes b JOIN outlets o ON b.outlet_key = o.outlet_key;"
+      },
+      "id": "node-db-check-barcode",
+      "name": "Check Barcode Status",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [500, 500],
+      "credentials": {
+        "postgres": {
+          "id": "postgres-cred",
+          "name": "Postgres Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o-mini",
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "id": "node-openai-model",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [400, 700],
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-cred",
+          "name": "OpenAI Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "hasSystemPrompt": true,
+        "systemPrompt": "=Anda adalah EL GROUP AI Customer Service (Spa & Karaoke Jakarta). Sapa pengguna dengan 'kak', ramah, sopan, natural, profesional.\n\nKONTEN OUTLET & JAM OPS:\n- EL CENTRO, EL SPA PANGJAY, EL SEVEN CLUB (Gajah Mada)\n- EL NORTE (PIK)\n- EL FENIX, EL SPA GADING (Kelapa Gading)\n- EL ORCA (GLC)\n- EL CASA (GADSER)\n- EL MEMENTO (JAKSEL)\n\nATURAN ROUTING KONTAK BOOKING:\n- Booking EL NORTE -> Kim Asst Norte (@kimasst / WA: https://wa.me/qr/XQRRH3QXZCZAA1)\n- Booking EL FENIX -> Dori Asst Fenix (@Doriasst / WA: https://wa.me/qr/KSTLRQATOQ2PC1)\n- Booking Umum / Outlet Lain -> Madam Tika (@MadamTika / WA: https://wa.me/qr/O6QEVDUNDJB4G1)\n\nANTI-HALUSINASI: Jangan mengarang harga, promo, WA, Telegram, alamat, room, atau ketersediaan therapist jika tidak ada data.\nJIKA REQUIRING HUMAN ADMIN: Sertakan tag [NEED_ADMIN] di bagian paling akhir respon Anda."
+      },
+      "id": "node-ai-agent",
+      "name": "AI Assistant Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [650, 700]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.text }}",
+              "operation": "contains",
+              "value2": "@EntertainmentBot"
+            }
+          ]
+        }
+      },
+      "id": "node-check-group-mention",
+      "name": "Is Group Mention",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 600]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.output }}",
+              "operation": "contains",
+              "value2": "[NEED_ADMIN]"
+            }
+          ]
+        }
+      },
+      "id": "node-detect-need-admin",
+      "name": "Detect NEED_ADMIN",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 800]
+    },
+    {
+      "parameters": {
+        "chatId": "5437246207",
+        "text": "=🔥 <b>NEW BOOKING LEAD / NEED ADMIN HANDOVER</b>\n\n👤 <b>Customer:</b> {{ $json.text }}\n🤖 <b>AI Context:</b> Handover dipicu otomatis\n\n👉 <i>Silakan hubungi customer ini untuk reservasi.</i>",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "id": "node-notify-admin",
+      "name": "Send Admin Alert Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.1,
+      "position": [1100, 800],
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-cred",
+          "name": "Telegram Bot Account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Telegram Webhook": {
+      "main": [
+        [
+          {
+            "node": "Has Text or Callback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Text or Callback": {
+      "main": [
+        [
+          {
+            "node": "Parse Keyboards & Routing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Keyboards & Routing": {
+      "main": [
+        [
+          {
+            "node": "AI Assistant Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "02:00 WIB Barcode Expire Check": {
+      "main": [
+        [
+          {
+            "node": "Check Barcode Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Assistant Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Assistant Agent": {
+      "main": [
+        [
+          {
+            "node": "Is Group Mention",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Detect NEED_ADMIN",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect NEED_ADMIN": {
+      "main": [
+        [
+          {
+            "node": "Send Admin Alert Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}
