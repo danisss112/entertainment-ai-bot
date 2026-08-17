@@ -15,7 +15,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const body = $input.item.json.body;\nconst callback = body.callback_query;\nconst message = body.message;\n\nlet chatId = 0;\nlet fromId = 0;\nlet text = '';\nlet isCallback = false;\nlet callbackData = '';\n\nif (callback) {\n  isCallback = true;\n  chatId = callback.message.chat.id;\n  fromId = callback.from.id;\n  callbackData = callback.data || '';\n} else if (message) {\n  chatId = message.chat.id;\n  fromId = message.from.id;\n  text = (message.text || '').trim();\n}\n\nconst isStart = text === '/start' || text.toLowerCase() === 'menu' || callbackData === 'menu_start';\n\nreturn {\n  chatId,\n  fromId,\n  text,\n  isCallback,\n  callbackData,\n  isStart\n};"
+        "jsCode": "const body = $input.item.json.body;\nconst callback = body.callback_query;\nconst message = body.message;\n\nlet chatId = 0;\nlet fromId = 0;\nlet text = '';\nlet isCallback = false;\nlet callbackData = '';\n\nif (callback) {\n  isCallback = true;\n  chatId = callback.message.chat.id;\n  fromId = callback.from.id;\n  callbackData = callback.data || '';\n} else if (message) {\n  chatId = message.chat.id;\n  fromId = message.from.id;\n  text = (message.text || '').trim();\n}\n\nconst lowerText = text.toLowerCase();\nconst cmd = callbackData || lowerText;\n\nlet directReply = null;\n\nif (cmd === '/start' || cmd === 'menu' || cmd === 'btn_start') {\n  directReply = {\n    type: 'menu',\n    text: '👋 <b>Selamat Datang di EL GROUP AI Assistant!</b>\\n\\nLayanan resmi informasi & reservasi Spa, Karaoke KTV, dan Club EL Group.\\n\\nSilakan pilih menu di bawah ini:'\n  };\n} else if (cmd === '/outlets' || cmd === 'btn_outlets' || cmd.includes('outlet')) {\n  directReply = {\n    type: 'text',\n    text: '📍 <b>DAFTAR OUTLET EL GROUP & GOOGLE MAPS:</b>\\n\\n1. <b>EL CENTRO</b> (Gajah Mada)\\n2. <b>EL SPA PANGJAY</b> (Pangeran Jayakarta)\\n3. <b>EL SEVEN CLUB</b> (Gajah Mada) - <a href=\"https://g.co/kgs/XsooJhR\">Google Maps</a>\\n4. <b>EL NORTE</b> (PIK) - <a href=\"https://g.co/kgs/2x2ah1j\">Google Maps</a>\\n5. <b>EL FENIX</b> (Kelapa Gading)\\n6. <b>EL SPA GADING</b> (Kelapa Gading) - <a href=\"https://g.co/kgs/boEFS4t\">Google Maps</a>\\n7. <b>EL ORCA</b> (GLC) - <a href=\"https://g.co/kgs/uftGAAa\">Google Maps</a>\\n8. <b>EL CASA</b> (GADSER) - <a href=\"https://g.co/kgs/JbtEvHK\">Google Maps</a>\\n9. <b>EL MEMENTO</b> (JAKSEL) - <a href=\"https://share.google/NkCFC2E5gQHcVXI7Y\">Google Maps</a>'\n  };\n} else if (cmd === '/jamops' || cmd === 'btn_jamops' || cmd.includes('jam ops')) {\n  directReply = {\n    type: 'text',\n    text: '⏰ <b>JAM OPERASIONAL OUTLET EL GROUP:</b>\\n\\n📍 <b>El Centro:</b> 14.00 - 01.00 | Last Order 00.30\\n📍 <b>El Spa Pangjay:</b> 12.00 - 23.00 | Last Order 22.30\\n📍 <b>El Seven Club:</b> 18.00 - 04.00 | Last Order 03.30\\n📍 <b>El Norte:</b> 12.00 - 24.00 | Last Order 23.30\\n📍 <b>El Fenix:</b> 14.00 - 24.00 | Last Order 23.30\\n📍 <b>El Spa KG:</b> 12.00 - 23.00 | Last Order 22.30\\n📍 <b>El Orca:</b> 12.00 - 23.00 | Last Order 22.30\\n📍 <b>El Casa:</b> 13.00 - 24.00 | Last Order 23.30\\n📍 <b>El Memento:</b> 12.00 - 01.00 | Last Order 00.30\\n\\n✨ <i>Buka Setiap Hari!</i>'\n  };\n} else if (cmd === '/pricelist' || cmd === '/ktv' || cmd === '/celeb' || cmd === 'btn_pricelist' || cmd.includes('harga') || cmd.includes('paket')) {\n  directReply = {\n    type: 'text',\n    text: '💎 <b>INFORMASI HARGA & PAKET EL GROUP:</b>\\n\\n🔥 <b>PAKET ESTAFET:</b> 90 menit (3x FJ), 3 Ladies Platinum.\\n💦 <b>PAKET THREESOME:</b> Durasi 1-2 Jam (Voucher Kamar).\\n🎰 <b>DOUBLE JACKPOT:</b> 60 menit (1x FJ + 1x HJ, Khusus El Seven).\\n🎤 <b>KARAOKE KTV & PARTY:</b> Regular (3 Jam), Party (4 Jam), Pool Spa (4 Jam), Close Voucher.\\n⭐ <b>BOOKING CELEB:</b> Wajib H-1, DP 50%.\\n\\n<i>* Detail harga tepat sesuai cabang yang ingin dikunjungi.</i>'\n  };\n} else if (cmd === '/member' || cmd === 'btn_member' || cmd.includes('member')) {\n  directReply = {\n    type: 'text',\n    text: '🪪 <b>REGISTRASI MEMBER EL GROUP:</b>\\n\\nKirim format registrasi ke Telegram @MadamTika:\\n- Nama Member: (Bebas)\\n- No HP: (Aktif)\\n\\n✨ <b>Keuntungan:</b> Dapat dipakai di seluruh outlet EL Group + Cashback Top Up!\\n🌐 Digital Card: <a href=\"https://app.elgroupapp.com/\">elgroupapp.com</a>'\n  };\n} else if (cmd === '/booking' || cmd === 'btn_booking' || cmd.includes('booking')) {\n  directReply = {\n    type: 'text',\n    text: '📞 <b>KONTAK RESERVASI & BOOKING RESMI:</b>\\n\\n👑 <b>Booking Umum / Outlet Lain:</b>\\nMadam Tika (WhatsApp: https://wa.me/qr/O6QEVDUNDJB4G1 | Telegram: @MadamTika)\\n\\n🌴 <b>Booking EL NORTE:</b>\\nKim Asst Norte (WhatsApp: https://wa.me/qr/XQRRH3QXZCZAA1 | Telegram: @kimasst)\\n\\n🔥 <b>Booking EL FENIX:</b>\\nDori Asst Fenix (WhatsApp: https://wa.me/qr/KSTLRQATOQ2PC1 | Telegram: @Doriasst)'\n  };\n}\n\nreturn {\n  chatId,\n  fromId,\n  text,\n  isCallback,\n  callbackData,\n  isDirect: directReply !== null,\n  directReply\n};"
       },
       "id": "node-parse-telegram",
       "name": "Parse Keyboards & Routing",
@@ -28,14 +28,14 @@
         "conditions": {
           "boolean": [
             {
-              "value1": "={{ $json.isStart }}",
+              "value1": "={{ $json.isDirect }}",
               "value2": true
             }
           ]
         }
       },
-      "id": "node-check-start",
-      "name": "Is Start or Menu",
+      "id": "node-check-direct",
+      "name": "Is Direct Command or Button",
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [500, 300]
@@ -43,8 +43,8 @@
     {
       "parameters": {
         "chatId": "={{ $json.chatId }}",
-        "text": "👋 <b>Selamat Datang di EL GROUP AI Assistant!</b>\n\nLayanan resmi informasi & reservasi Spa, Karaoke KTV, dan Club EL Group.\n\nSilakan pilih menu di bawah ini:",
-        "replyMarkup": "inlineKeyboard",
+        "text": "={{ $json.directReply.text }}",
+        "replyMarkup": "={{ $json.directReply.type === 'menu' ? 'inlineKeyboard' : 'none' }}",
         "inlineKeyboard": {
           "rows": [
             {
@@ -76,8 +76,8 @@
           "parse_mode": "HTML"
         }
       },
-      "id": "node-send-start-menu",
-      "name": "Send Start Menu Keyboard",
+      "id": "node-send-direct-reply",
+      "name": "Send Direct Reply Telegram",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [750, 200],
@@ -128,8 +128,8 @@
           "parse_mode": "HTML"
         }
       },
-      "id": "node-send-telegram-reply",
-      "name": "Send Reply Telegram",
+      "id": "node-send-ai-reply",
+      "name": "Send AI Reply Telegram",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.1,
       "position": [1000, 450],
@@ -157,18 +157,18 @@
       "main": [
         [
           {
-            "node": "Is Start or Menu",
+            "node": "Is Direct Command or Button",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Is Start or Menu": {
+    "Is Direct Command or Button": {
       "main": [
         [
           {
-            "node": "Send Start Menu Keyboard",
+            "node": "Send Direct Reply Telegram",
             "type": "main",
             "index": 0
           }
@@ -197,7 +197,7 @@
       "main": [
         [
           {
-            "node": "Send Reply Telegram",
+            "node": "Send AI Reply Telegram",
             "type": "main",
             "index": 0
           }
