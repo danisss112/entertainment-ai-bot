@@ -135,9 +135,9 @@ INSERT INTO outlets (outlet_key, name, location_url, operational_hours, pricelis
 ('norte',      'El Norte',            'https://g.co/kgs/2x2ah1j', '12.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_norte.jpeg'),
 ('fenix',      'El Fenix',            'https://g.co/kgs/boEFS4t', '14.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_fenix.jpeg'),
 ('spaKG',      'El Spa KG',           'https://g.co/kgs/boEFS4t', '12.00 - 23.00 WIB | Last Order 22.30', 'https://tikael.kereaktif.id/el_spa_kelapa_gading.jpeg'),
-('orca',       'El Orca',             'https://g.co/kgs/uftGAAa', '12.00 - 23.00 WIB | Last Order 22.30', 'https://tikael.kereaktif.id/el_orca_new.jpeg'),
+('orca',       'El Orca',             'https://share.google/TxtsO9ADL3uNC6XQU', '12.00 - 23.00 WIB | Last Order 22.30', 'https://tikael.kereaktif.id/el_orca_new.jpeg'),
 ('casa',       'El Casa',             'https://g.co/kgs/JbtEvHK', '13.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_casa.jpeg'),
-('memento',    'El Memento',          'https://share.google/NkCFC2E5gQHcVXI7Y', '12.00 - 01.00 WIB | Last Order 00.30', 'https://tikael.kereaktif.id/el_memento.jpeg')
+('memento',    'El Memento',          'https://share.google/xsynzLTqGqXn4hQ0v', '13.00 - 01.00 WIB | Last Order 00.30', 'https://tikael.kereaktif.id/el_memento.jpeg')
 ON CONFLICT (outlet_key) DO UPDATE SET 
     name = EXCLUDED.name,
     location_url = EXCLUDED.location_url,
@@ -273,37 +273,37 @@ Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengece
 'Kak tenang aja ya 🙏 Ladies eL Group semua sudah cek kesehatan & bebas HIV. Ada dokternya juga yang rutin cek. Jadi aman & nyaman kok 😃', 'sehat, hiv, penyakit, dokter, aman, kesehatan, ladies, terapis'),
 
 ('lokasi_cabang', 'Daftar Lokasi & Alamat 6 Outlet EL Group',
-'👥 EL GROUP 💕🇮🇩
+'👥 𝗘𝗟 𝗚𝗥𝗢𝗨𝗣 💕🇮🇩
 
 6 Outlet Terbaik di Jakarta & Tangerang
 
-📍 1. EL CENTRO
+📍 𝟭. 𝗘𝗟 𝗖𝗘𝗡𝗧𝗥𝗢
 • EL Centro — Lt. 8
 • EL Spa Pangjay — Lt. 3
 • EL Seven Club — Lt. 2
 📌 Lokasi: Hotel Maxwell, Pangjay — Jakarta Pusat
 🗺️ Maps: https://g.co/kgs/XsooJhR
 
-📍 2. EL FENIX
+📍 𝟮. 𝗘𝗟 𝗙𝗘𝗡𝗜𝗫
 • EL Fenix — Lt. 10
 • EL Spa Kelapa Gading — Lt. 9
 📌 Lokasi: Kelapa Gading — Jakarta Utara
 🗺️ Maps: https://g.co/kgs/boEFS4t
 
-📍 3. EL NORTE
+📍 𝟯. 𝗘𝗟 𝗡𝗢𝗥𝗧𝗘
 📌 Lokasi: Pantai Indah Kapuk — Jakarta Utara
 🗺️ Maps: https://g.co/kgs/2x2ah1j
 
-📍 4. EL ORCA
+📍 𝟰. 𝗘𝗟 𝗢𝗥𝗖𝗔
 📌 Lokasi: Green Lake City — Tangerang
 🗺️ Maps: https://share.google/TxtsO9ADL3uNC6XQU
 
-📍 5. EL CASA
+📍 𝟱. 𝗘𝗟 𝗖𝗔𝗦𝗔
 📌 Lokasi: Gading Serpong — Tangerang
 🗺️ Maps: https://g.co/kgs/JbtEvHK
 
-📍 6. EL MEMENTO
+📍 𝟲. 𝗘𝗟 𝗠𝗘𝗠𝗘𝗡𝗧𝗢
 📌 Lokasi: Jakarta Selatan
-🗺️ Maps: https://share.google/xsynzLTqGqXn4HQ0v
+🗺️ Maps: https://share.google/xsynzLTqGqXn4hQ0v
 
 💕 EL GROUP — Your Premium Entertainment & Relaxation Destination', 'lokasi, cabang, alamat, outlet, dimana, mana saja, berapa cabang, maps, hotel maxwell, pangjay, pik, kelapa gading, glc, gading serpong, jaksel');
