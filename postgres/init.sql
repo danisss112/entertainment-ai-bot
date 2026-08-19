@@ -62,6 +62,17 @@ CREATE TABLE IF NOT EXISTS bot_admin_state (
     selected_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+-- 4d. BOT_CHAT_SESSIONS TABLE (Tracks Telegram Business Chatbot & Human Takeover state)
+CREATE TABLE IF NOT EXISTS bot_chat_sessions (
+    chat_id BIGINT PRIMARY KEY,
+    is_paused BOOLEAN DEFAULT FALSE,
+    paused_until TIMESTAMP WITH TIME ZONE,
+    last_admin_activity TIMESTAMP WITH TIME ZONE,
+    business_connection_id TEXT,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- 5. TALENTS TABLE
 CREATE TABLE IF NOT EXISTS talents (
     id SERIAL PRIMARY KEY,
