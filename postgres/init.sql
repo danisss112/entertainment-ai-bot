@@ -238,4 +238,26 @@ Link kartu digital: https://app.elgroupapp.com/', 'member, registrasi, daftar, c
 Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengecekan.', 'barang, ketinggalan, tertinggal, lost, found, hp, dompet'),
 
 ('ktp', 'Persyaratan KTP / Identitas',
-'Untuk kebutuhan tertentu, identitas/KTP dapat diperlukan sesuai kebijakan outlet. Silakan sebutkan outlet yang ingin dikunjungi untuk informasi lebih lanjut.', 'ktp, identitas, id, bawa ktp');
+'Untuk kebutuhan tertentu, identitas/KTP dapat diperlukan sesuai kebijakan outlet. Silakan sebutkan outlet yang ingin dikunjungi untuk informasi lebih lanjut.', 'ktp, identitas, id, bawa ktp'),
+
+('rules_sop', 'Aturan Kedatangan & SOP Reservasi Barcode',
+'📋 PERATURAN & KETENTUAN RESMI EL GROUP:
+- Bagi yang mau datang ke semua outlet EL Group bisa langsung hub Madam Tika atau Kim & Dori.
+- Bisa pilih Ladies lewat foto atau showing pilih langsung di lokasi.
+- Dibutuhkan Reservasi & Barcode untuk akses masuk & akses lift setiap kali mau datang.
+- Barcode di-scan di security.
+
+Demi kenyamanan & keamanan bersama, seluruh tamu wajib mengikuti SOP & aturan yang berlaku. Terima kasih atas pengertiannya! ☺️', 'rules, aturan, sop, kedatangan, reservasi, barcode, security, lift, madam tika, kim, dori'),
+
+('layanan_options', 'Perbedaan Layanan LC, Ladies Drink & Therapist',
+'Hai kak 👋 EL Group ada 3 pilihan:
+
+1. LC: Karaoke + Private 60mnt (Bisa karaoke terlebih dahulu dan bisa langsung Private Session 1v1 durasi 60 menit)
+2. Ladies Drink: minum 30 mnt + Private 60 mnt El Seven (Teman minum durasi 30 menit. Bisa langsung private session duration 60 menit. Khusus untuk Talent EL Seven saja)
+3. Therapist: Berendam + Pijat + Private 90 mnt El Spa (Teman berendam minum & lanjut pijat dahulu, kemudian dilanjutkan dengan private session durasi 90 menit)', 'lc, ladies drink, therapist, beda, perbedaan, pilihan, karaoke, minum, berendam, pijat, spa'),
+
+('fr_review', 'Field Report / Feedback / Review Tamu (FR)',
+'Hal kak, Nggak semua tamu kasih feedback/review, FR sebagian lebih pilih privacy. Tapi kakak nggak usah khawatir ya. Talent EL GROUP semua udah berpengalaman & rutin ikut training. Standar pelayanan kami selalu dijaga biar kakak nyaman & puas. Ditunggu kedatangannya di EL Group ✨', 'fr, field report, review, testimoni, feedback, masukan'),
+
+('kesehatan_ladies', 'Kesehatan & Cek HIV Talent / Ladies',
+'Kak tenang aja ya 🙏 Ladies EL Group semua sudah cek kesehatan & bebas HIV. Ada dokternya juga yang rutin cek. Jadi aman & nyaman kok 😃', 'sehat, kesehatan, dokter, hiv, penyakit, aman, terapis, ladies');
