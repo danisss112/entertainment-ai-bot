@@ -153,11 +153,11 @@ INSERT INTO knowledge (category, question_pattern, answer_text, keywords) VALUES
 📍 El Seven Club: 18.00 - 04.00 | Last Order 03.30
 📍 El Norte: 12.00 - 24.00 | Last Order 23.30
 📍 El Fenix: 14.00 - 24.00 | Last Order 23.30
-📍 El Spa KG: 12.00 - 23.00 | Last Order 22.30
+📍 El Spa Gading: 12.00 - 24.00 | Last Order 23.30
 📍 El Orca: 12.00 - 23.00 | Last Order 22.30
 📍 El Casa: 13.00 - 24.00 | Last Order 23.30
-📍 El Memento: 12.00 - 01.00 | Last Order 00.30
-Open Everyday!', 'jam, ops, buka, tutup, operasional'),
+📍 El Memento: 13.00 - 01.00 | Last Order 00.30
+Note: We Are Open Every Day 😚', 'jam, ops, buka, tutup, operasional'),
 
 ('donotdo', 'Peraturan dan Larangan (Do Not Do)', 
 '⚠️ PERATURAN & KETENTUAN EL GROUP:
