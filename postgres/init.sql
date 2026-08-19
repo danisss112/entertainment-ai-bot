@@ -223,11 +223,23 @@ Link kartu digital: https://app.elgroupapp.com/', 'member, registrasi, daftar, c
 * Catatan: Pembayaran hanya dilakukan di kasir resmi.', 'payment, pembayaran, bayar, qris, transfer, cash, kartu'),
 
 ('contact', 'Kontak Reservasi & Admin', 
-'📞 KONTAK RESERVASI RESMI:
-• Booking Umum / Madam Tika: 087883488882 (https://wa.me/qr/O6QEVDUNDJB4G1 / Telegram: @MadamTika)
-• Booking EL NORTE / Kim Asst: 081227282945 (https://wa.me/qr/XQRRH3QXZCZAA1 / Telegram: @kimasst)
-• Booking EL FENIX / Dori Asst: 081376776722 (https://wa.me/qr/KSTLRQATOQ2PC1 / Telegram: @Doriasst)
-• Telegram Group: @spakaraokejakarta', 'contact, kontak, admin, tika, whatsapp, wa, telegram, norte, fenix, nomor, hp, 087883488882, 081227282945, 081376776722'),
+'<b>RESERVASI & CONTACT ADMIN RESMI 🔗</b>
+
+💙 <b>Madam Tika (Reservasi Umum)</b>
+WhatsApp: https://wa.me/qr/O6QEVDUNDJB4G1
+Telegram: @MadamTika
+
+💙 <b>Kim Asst Norte (Reservasi El Norte)</b>
+WhatsApp: https://wa.me/qr/XQRRH3QXZCZAA1
+Telegram: @kimasst
+
+💙 <b>Dori Asst Fenix (Reservasi El Fenix)</b>
+WhatsApp: https://wa.me/qr/KSTLRQATOQ2PC1
+Telegram: @Doriasst
+
+<b>👩‍💻 CS EL GROUP 24 JAM</b>
+Reservasi & Info: 
+Telegram : @Elgroupspa_bot', 'contact, kontak, admin, tika, whatsapp, wa, telegram, norte, fenix, cs'),
 
 ('lost_item', 'Barang Tertinggal / Lost and Found',
 ' Jangan khawatir kak! Silakan informasikan data berikut:
@@ -239,31 +251,28 @@ Link kartu digital: https://app.elgroupapp.com/', 'member, registrasi, daftar, c
 Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengecekan.', 'barang, ketinggalan, tertinggal, lost, found, hp, dompet'),
 
 ('ktp', 'Persyaratan KTP / Identitas',
-'Untuk kebutuhan tertentu, identitas/KTP dapat diperlukan sesuai kebijakan outlet. Silakan sebutkan outlet yang ingin dikunjungi untuk informasi lebih lanjut.', 'ktp, identitas, id, bawa ktp'),
+' Minimal usia kunjungan 18 tahun (harus bawa KTP/Identitas resmi jika diminta staff di lokasi).', 'ktp, usia, identitas, umur, 18'),
 
-('rules_sop', 'Aturan Kedatangan & SOP Reservasi Barcode',
-'📋 PERATURAN & KETENTUAN RESMI EL GROUP:
-- Bagi yang mau datang ke semua outlet EL Group bisa langsung hub Madam Tika atau Kim & Dori.
-- Bisa pilih Ladies lewat foto atau showing pilih langsung di lokasi.
-- Dibutuhkan Reservasi & Barcode untuk akses masuk & akses lift setiap kali mau datang.
-- Barcode di-scan di security.
-
-Demi kenyamanan & keamanan bersama, seluruh tamu wajib mengikuti SOP & aturan yang berlaku. Terima kasih atas pengertiannya! ☺️', 'rules, aturan, sop, kedatangan, reservasi, barcode, security, lift, madam tika, kim, dori'),
+('rules_sop', 'SOP Barcode & Akses Lift Kedatangan',
+'📌 SOP KEDATANGAN & AKSES LIFT:
+1. Setiap tamu yang hendak berkunjung ke seluruh outlet EL Group WAJIB melakukan reservasi & memiliki Barcode Masuk.
+2. Barcode Masuk akan di-scan di security/kasir untuk akses masuk & akses lift.
+3. Tamu bebas memilih talent/ladies via foto atau showing langsung di lokasi.
+4. Sebutkan nama Madam Tika / Kim / Dori saat tiba di lokasi.', 'sop, barcode, lift, keamanan, security, reservasi, akses'),
 
 ('layanan_options', 'Perbedaan Layanan LC, Ladies Drink & Therapist',
 'Hai kak 👋 EL Group ada 3 pilihan:
-
 1. LC: Karaoke + Private 60mnt (Bisa karaoke terlebih dahulu dan bisa langsung Private Session 1v1 durasi 60 menit)
 2. Ladies Drink: minum 30 mnt + Private 60 mnt El Seven (Teman minum durasi 30 menit. Bisa langsung private session duration 60 menit. Khusus untuk Talent EL Seven saja)
-3. Therapist: Berendam + Pijat + Private 90 mnt El Spa (Teman berendam minum & lanjut pijat dahulu, kemudian dilanjutkan dengan private session durasi 90 menit)', 'lc, ladies drink, therapist, beda, perbedaan, pilihan, karaoke, minum, berendam, pijat, spa'),
+3. Therapist: Berendam + Pijat + Private 90 mnt El Spa (Teman berendam minum & lanjut pijat dahulu, kemudian dilanjutkan dengan private session durasi 90 menit)', 'layanan, beda, perbedaan, lc, drink, therapist, terapis, karaoke, spa'),
 
-('fr_review', 'Field Report / Feedback / Review Tamu (FR)',
-'Hal kak, Nggak semua tamu kasih feedback/review, FR sebagian lebih pilih privacy. Tapi kakak nggak usah khawatir ya. Talent EL GROUP semua udah berpengalaman & rutin ikut training. Standar pelayanan kami selalu dijaga biar kakak nyaman & puas. Ditunggu kedatangannya di EL Group ✨', 'fr, field report, review, testimoni, feedback, masukan'),
+('fr_review', 'Testimoni & Field Report (FR) Tamu',
+'Hal kak , Nggak semua tamu kasih feedback/review, FR sebagian lebih pilih privacy. Tapi kakak nggak usah khawatir ya. Talent EL GROUP semua udah berpengalaman & rutin ikut training. Standar pelayanan kami selalu dijaga biar kakak nyaman & puas. Ditunggu kedatangannya di EL Group ✨', 'fr, review, field report, testimoni, masukan, feedback'),
 
-('kesehatan_ladies', 'Kesehatan & Cek HIV Talent / Ladies',
-'Kak tenang aja ya 🙏 Ladies EL Group semua sudah cek kesehatan & bebas HIV. Ada dokternya juga yang rutin cek. Jadi aman & nyaman kok 😃', 'sehat, kesehatan, dokter, hiv, penyakit, aman, terapis, ladies'),
+('kesehatan_ladies', 'Kesehatan & Bebas HIV Talent EL Group',
+'Kak tenang aja ya 🙏 Ladies eL Group semua sudah cek kesehatan & bebas HIV. Ada dokternya juga yang rutin cek. Jadi aman & nyaman kok 😃', 'sehat, hiv, penyakit, dokter, aman, kesehatan, ladies, terapis'),
 
-('lokasi_cabang', 'Lokasi Cabang & Alamat Seluruh Outlet EL Group',
+('lokasi_cabang', 'Daftar Lokasi & Alamat 6 Outlet EL Group',
 '👥 EL GROUP 💕🇮🇩
 
 6 Outlet Terbaik di Jakarta & Tangerang
@@ -287,7 +296,7 @@ Demi kenyamanan & keamanan bersama, seluruh tamu wajib mengikuti SOP & aturan ya
 
 📍 4. EL ORCA
 📌 Lokasi: Green Lake City — Tangerang
-🗺️ Maps: https://g.co/kgs/uftGAaA
+🗺️ Maps: https://share.google/TxtsO9ADL3uNC6XQU
 
 📍 5. EL CASA
 📌 Lokasi: Gading Serpong — Tangerang
@@ -295,6 +304,6 @@ Demi kenyamanan & keamanan bersama, seluruh tamu wajib mengikuti SOP & aturan ya
 
 📍 6. EL MEMENTO
 📌 Lokasi: Jakarta Selatan
-🗺️ Maps: https://share.google/NkCFC2E5gQHcVXI7Yin
+🗺️ Maps: https://share.google/xsynzLTqGqXn4HQ0v
 
 💕 EL GROUP — Your Premium Entertainment & Relaxation Destination', 'lokasi, cabang, alamat, outlet, dimana, mana saja, berapa cabang, maps, hotel maxwell, pangjay, pik, kelapa gading, glc, gading serpong, jaksel');
