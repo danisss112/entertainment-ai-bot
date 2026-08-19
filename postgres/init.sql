@@ -260,4 +260,40 @@ Demi kenyamanan & keamanan bersama, seluruh tamu wajib mengikuti SOP & aturan ya
 'Hal kak, Nggak semua tamu kasih feedback/review, FR sebagian lebih pilih privacy. Tapi kakak nggak usah khawatir ya. Talent EL GROUP semua udah berpengalaman & rutin ikut training. Standar pelayanan kami selalu dijaga biar kakak nyaman & puas. Ditunggu kedatangannya di EL Group ✨', 'fr, field report, review, testimoni, feedback, masukan'),
 
 ('kesehatan_ladies', 'Kesehatan & Cek HIV Talent / Ladies',
-'Kak tenang aja ya 🙏 Ladies EL Group semua sudah cek kesehatan & bebas HIV. Ada dokternya juga yang rutin cek. Jadi aman & nyaman kok 😃', 'sehat, kesehatan, dokter, hiv, penyakit, aman, terapis, ladies');
+'Kak tenang aja ya 🙏 Ladies EL Group semua sudah cek kesehatan & bebas HIV. Ada dokternya juga yang rutin cek. Jadi aman & nyaman kok 😃', 'sehat, kesehatan, dokter, hiv, penyakit, aman, terapis, ladies'),
+
+('lokasi_cabang', 'Lokasi Cabang & Alamat Seluruh Outlet EL Group',
+'👥 EL GROUP 💕🇮🇩
+
+6 Outlet Terbaik di Jakarta & Tangerang
+
+📍 1. EL CENTRO
+• EL Centro — Lt. 8
+• EL Spa Pangjay — Lt. 3
+• EL Seven Club — Lt. 2
+📌 Lokasi: Hotel Maxwell, Pangjay — Jakarta Pusat
+🗺️ Maps: https://g.co/kgs/XsooJhR
+
+📍 2. EL FENIX
+• EL Fenix — Lt. 10
+• EL Spa Kelapa Gading — Lt. 9
+📌 Lokasi: Kelapa Gading — Jakarta Utara
+🗺️ Maps: https://g.co/kgs/boEFS4t
+
+📍 3. EL NORTE
+📌 Lokasi: Pantai Indah Kapuk — Jakarta Utara
+🗺️ Maps: https://g.co/kgs/2x2ah1j
+
+📍 4. EL ORCA
+📌 Lokasi: Green Lake City — Tangerang
+🗺️ Maps: https://g.co/kgs/uftGAaA
+
+📍 5. EL CASA
+📌 Lokasi: Gading Serpong — Tangerang
+🗺️ Maps: https://g.co/kgs/JbtEvHK
+
+📍 6. EL MEMENTO
+📌 Lokasi: Jakarta Selatan
+🗺️ Maps: https://share.google/NkCFC2E5gQHcVXI7Yin
+
+💕 EL GROUP — Your Premium Entertainment & Relaxation Destination', 'lokasi, cabang, alamat, outlet, dimana, mana saja, berapa cabang, maps, hotel maxwell, pangjay, pik, kelapa gading, glc, gading serpong, jaksel');
