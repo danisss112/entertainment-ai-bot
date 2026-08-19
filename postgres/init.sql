@@ -224,9 +224,10 @@ Link kartu digital: https://app.elgroupapp.com/', 'member, registrasi, daftar, c
 
 ('contact', 'Kontak Reservasi & Admin', 
 '📞 KONTAK RESERVASI RESMI:
-• Booking Umum / Outlet Lain: Madam Tika (https://wa.me/qr/O6QEVDUNDJB4G1 / Telegram: @MadamTika)
-• Booking EL NORTE: Kim Asst Norte (https://wa.me/qr/XQRRH3QXZCZAA1 / Telegram: @kimasst)
-• Booking EL FENIX: Dori Asst Fenix (https://wa.me/qr/KSTLRQATOQ2PC1 / Telegram: @Doriasst)', 'contact, kontak, admin, tika, whatsapp, wa, telegram, norte, fenix'),
+• Booking Umum / Madam Tika: 087883488882 (https://wa.me/qr/O6QEVDUNDJB4G1 / Telegram: @MadamTika)
+• Booking EL NORTE / Kim Asst: 081227282945 (https://wa.me/qr/XQRRH3QXZCZAA1 / Telegram: @kimasst)
+• Booking EL FENIX / Dori Asst: 081376776722 (https://wa.me/qr/KSTLRQATOQ2PC1 / Telegram: @Doriasst)
+• Telegram Group: @spakaraokejakarta', 'contact, kontak, admin, tika, whatsapp, wa, telegram, norte, fenix, nomor, hp, 087883488882, 081227282945, 081376776722'),
 
 ('lost_item', 'Barang Tertinggal / Lost and Found',
 ' Jangan khawatir kak! Silakan informasikan data berikut:
