@@ -140,15 +140,15 @@ ON CONFLICT (telegram_id) DO NOTHING;
 
 -- Seed Outlets
 INSERT INTO outlets (outlet_key, name, location_url, operational_hours, pricelist_photo_url) VALUES
-('centro',     'El Centro',           'https://g.co/kgs/XsooJhR', '14.00 - 01.00 WIB | Last Order 00.30', 'https://tikael.kereaktif.id/el_centro.jpeg'),
-('spaPangjay', 'El Spa Pangjay',      'https://g.co/kgs/XsooJhR', '12.00 - 23.00 WIB | Last Order 22.30', 'https://tikael.kereaktif.id/el_spa_pangjay_new.jpeg'),
-('seven',      'El Seven Club',       'https://g.co/kgs/XsooJhR', '18.00 - 04.00 WIB | Last Order 03.30', 'https://tikael.kereaktif.id/el_seven_club.jpeg'),
-('norte',      'El Norte',            'https://g.co/kgs/2x2ah1j', '12.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_norte.jpeg'),
-('fenix',      'El Fenix',            'https://g.co/kgs/boEFS4t', '14.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_fenix.jpeg'),
-('spaKG',      'El Spa KG',           'https://g.co/kgs/boEFS4t', '12.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_spa_kelapa_gading.jpeg'),
-('orca',       'El Orca',             'https://share.google/TxtsO9ADL3uNC6XQU', '13.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_orca_new.jpeg'),
-('casa',       'El Casa',             'https://g.co/kgs/JbtEvHK', '13.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_casa.jpeg'),
-('memento',    'El Memento',          'https://share.google/xsynzLTqGqXn4hQ0v', '13.00 - 01.00 WIB | Last Order 00.30', 'https://tikael.kereaktif.id/el_memento.jpeg')
+('centro',     'El Centro',           'https://g.co/kgs/XsooJhR', '14.00 - 01.00 WIB | Last Order 00.30', 'https://tikael.madamtikael.id/el_centro.jpeg'),
+('spaPangjay', 'El Spa Pangjay',      'https://g.co/kgs/XsooJhR', '12.00 - 23.00 WIB | Last Order 22.30', 'https://tikael.madamtikael.id/el_spa_pangjay_new.jpeg'),
+('seven',      'El Seven Club',       'https://g.co/kgs/XsooJhR', '18.00 - 04.00 WIB | Last Order 03.30', 'https://tikael.madamtikael.id/el_seven_club.jpeg'),
+('norte',      'El Norte',            'https://g.co/kgs/2x2ah1j', '12.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.madamtikael.id/el_norte.jpeg'),
+('fenix',      'El Fenix',            'https://g.co/kgs/boEFS4t', '14.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.madamtikael.id/el_fenix.jpeg'),
+('spaKG',      'El Spa KG',           'https://g.co/kgs/boEFS4t', '12.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.madamtikael.id/el_spa_kelapa_gading.jpeg'),
+('orca',       'El Orca',             'https://share.google/TxtsO9ADL3uNC6XQU', '13.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.madamtikael.id/el_orca_new.jpeg'),
+('casa',       'El Casa',             'https://g.co/kgs/JbtEvHK', '13.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.madamtikael.id/el_casa.jpeg'),
+('memento',    'El Memento',          'https://share.google/xsynzLTqGqXn4hQ0v', '13.00 - 01.00 WIB | Last Order 00.30', 'https://tikael.madamtikael.id/el_memento.jpeg')
 ON CONFLICT (outlet_key) DO UPDATE SET 
     name = EXCLUDED.name,
     location_url = EXCLUDED.location_url,
