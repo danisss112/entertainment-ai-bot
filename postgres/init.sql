@@ -145,8 +145,8 @@ INSERT INTO outlets (outlet_key, name, location_url, operational_hours, pricelis
 ('seven',      'El Seven Club',       'https://g.co/kgs/XsooJhR', '18.00 - 04.00 WIB | Last Order 03.30', 'https://tikael.kereaktif.id/el_seven_club.jpeg'),
 ('norte',      'El Norte',            'https://g.co/kgs/2x2ah1j', '12.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_norte.jpeg'),
 ('fenix',      'El Fenix',            'https://g.co/kgs/boEFS4t', '14.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_fenix.jpeg'),
-('spaKG',      'El Spa KG',           'https://g.co/kgs/boEFS4t', '12.00 - 23.00 WIB | Last Order 22.30', 'https://tikael.kereaktif.id/el_spa_kelapa_gading.jpeg'),
-('orca',       'El Orca',             'https://share.google/TxtsO9ADL3uNC6XQU', '12.00 - 23.00 WIB | Last Order 22.30', 'https://tikael.kereaktif.id/el_orca_new.jpeg'),
+('spaKG',      'El Spa KG',           'https://g.co/kgs/boEFS4t', '12.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_spa_kelapa_gading.jpeg'),
+('orca',       'El Orca',             'https://share.google/TxtsO9ADL3uNC6XQU', '13.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_orca_new.jpeg'),
 ('casa',       'El Casa',             'https://g.co/kgs/JbtEvHK', '13.00 - 24.00 WIB | Last Order 23.30', 'https://tikael.kereaktif.id/el_casa.jpeg'),
 ('memento',    'El Memento',          'https://share.google/xsynzLTqGqXn4hQ0v', '13.00 - 01.00 WIB | Last Order 00.30', 'https://tikael.kereaktif.id/el_memento.jpeg')
 ON CONFLICT (outlet_key) DO UPDATE SET 
@@ -155,19 +155,20 @@ ON CONFLICT (outlet_key) DO UPDATE SET
     operational_hours = EXCLUDED.operational_hours,
     pricelist_photo_url = EXCLUDED.pricelist_photo_url;
 
--- Seed Knowledge Base (Master Version from bot IA revisi.xlsx)
+-- Seed Knowledge Base (Master Version from bot IA revisi.xlsx & Updated Assets)
 INSERT INTO knowledge (category, question_pattern, answer_text, keywords) VALUES
 ('jamops', 'Jam Operasional / Jam Buka Outlet', 
-'⏰ Jam Operasional EL Group:
+'⏰ <b>Jam Operasional EL Group:</b>
 📍 El Centro: 14.00 - 01.00 | Last Order 00.30
 📍 El Spa Pangjay: 12.00 - 23.00 | Last Order 22.30
 📍 El Seven Club: 18.00 - 04.00 | Last Order 03.30
 📍 El Norte: 12.00 - 24.00 | Last Order 23.30
 📍 El Fenix: 14.00 - 24.00 | Last Order 23.30
 📍 El Spa Gading: 12.00 - 24.00 | Last Order 23.30
-📍 El Orca: 12.00 - 23.00 | Last Order 22.30
+📍 El Orca: 13.00 - 24.00 | Last Order 23.30
 📍 El Casa: 13.00 - 24.00 | Last Order 23.30
 📍 El Memento: 13.00 - 01.00 | Last Order 00.30
+
 Note: We Are Open Every Day 😚', 'jam, ops, buka, tutup, operasional'),
 
 ('donotdo', 'Peraturan dan Larangan (Do Not Do)', 
@@ -226,31 +227,31 @@ Link kartu digital: https://app.elgroupapp.com/', 'member, registrasi, daftar, c
 
 ('payment', 'Metode Pembayaran', 
 '💳 Metode Pembayaran Resmi EL Group:
-- QRIS
-- NFC Card EL
+- QRIS (QR Code Standar Pembayaran Nasional)
+- NFC Card EL (Reguler / M. Partner)
 - Debit / Credit Card
-- Transfer Bank
-- Cash / Tunai
-* Catatan: Pembayaran hanya dilakukan di kasir resmi.', 'payment, pembayaran, bayar, qris, transfer, cash, kartu'),
+- Transfer Bank (CIMB Niaga)
+- Cash / Tunai (Rp)
+* Catatan: Pembayaran hanya dilakukan di kasir resmi (Payment only at the cashier).', 'payment, pembayaran, bayar, qris, transfer, cash, kartu, cimb'),
 
-('contact', 'Kontak Reservasi & Admin', 
-'<b>RESERVASI & CONTACT ADMIN RESMI 🔗</b>
+('contact', 'Kontak Reservasi & Admin Resmi', 
+'RESERVASI & CONTACT ADMIN RESMI 🔗
 
-💙 <b>Madam Tika (Reservasi Umum)</b>
+💙 Madam Tika (Reservasi Umum)
 WhatsApp: https://wa.me/qr/O6QEVDUNDJB4G1
 Telegram: @MadamTika
 
-💙 <b>Kim Asst Norte (Reservasi El Norte)</b>
+💙 Kim Asst Norte (Reservasi EL NORTE)
 WhatsApp: https://wa.me/qr/XQRRH3QXZCZAA1
 Telegram: @kimasst
 
-💙 <b>Dori Asst Fenix (Reservasi El Fenix)</b>
+💙 Dori Asst Fenix (Reservasi EL FENIX)
 WhatsApp: https://wa.me/qr/KSTLRQATOQ2PC1
 Telegram: @Doriasst
 
-<b>👩‍💻 CS EL GROUP 24 JAM</b>
-Reservasi & Info: 
-Telegram : @Elgroupspa_bot', 'contact, kontak, admin, tika, whatsapp, wa, telegram, norte, fenix, cs'),
+👩‍💻 CS EL GROUP 24 JAM
+Reservasi & Info:
+Telegram: @Elgroupspa_bot', 'contact, kontak, admin, tika, whatsapp, wa, telegram, norte, fenix, kim, dori, cs'),
 
 ('lost_item', 'Barang Tertinggal / Lost and Found',
 ' Jangan khawatir kak! Silakan informasikan data berikut:
@@ -264,18 +265,18 @@ Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengece
 ('ktp', 'Persyaratan KTP / Identitas',
 ' Minimal usia kunjungan 18 tahun (harus bawa KTP/Identitas resmi jika diminta staff di lokasi).', 'ktp, usia, identitas, umur, 18'),
 
-('rules_sop', 'SOP Barcode & Akses Lift Kedatangan',
-'📌 SOP KEDATANGAN & AKSES LIFT:
-1. Setiap tamu yang hendak berkunjung ke seluruh outlet EL Group WAJIB melakukan reservasi & memiliki Barcode Masuk.
-2. Barcode Masuk akan di-scan di security/kasir untuk akses masuk & akses lift.
-3. Tamu bebas memilih talent/ladies via foto atau showing langsung di lokasi.
-4. Sebutkan nama Madam Tika / Kim / Dori saat tiba di lokasi.', 'sop, barcode, lift, keamanan, security, reservasi, akses'),
+('rules_sop', 'Rules Resmi, SOP Barcode & Akses Masuk Kedatangan',
+'📋 PERATURAN & KETENTUAN RESMI EL GROUP:
+1. Bagi yang mau datang ke semua outlet EL GROUP bisa langsung hubungi Madam Tika Atau Kim & Dori.
+2. Tamu bisa pilih Ladies lewat foto atau showing pilih langsung di lokasi.
+3. Dibutuhkan Reservasi & Barcode untuk akses masuk & akses lift setiap kali mau datang.
+4. Barcode di-scan di security saat kedatangan.', 'sop, barcode, lift, keamanan, security, reservasi, akses, rules, aturan'),
 
 ('layanan_options', 'Perbedaan Layanan LC, Ladies Drink & Therapist',
 'Hai kak 👋 EL Group ada 3 pilihan:
-1. LC: Karaoke + Private 60mnt (Bisa karaoke terlebih dahulu dan bisa langsung Private Session 1v1 durasi 60 menit)
-2. Ladies Drink: minum 30 mnt + Private 60 mnt El Seven (Teman minum durasi 30 menit. Bisa langsung private session duration 60 menit. Khusus untuk Talent EL Seven saja)
-3. Therapist: Berendam + Pijat + Private 90 mnt El Spa (Teman berendam minum & lanjut pijat dahulu, kemudian dilanjutkan dengan private session durasi 90 menit)', 'layanan, beda, perbedaan, lc, drink, therapist, terapis, karaoke, spa'),
+1. LC (Ladies Company): Karaoke + Private 60 mnt (Bisa karaoke terlebih dahulu dan bisa langsung Private Session 1 voucher durasi 60 menit).
+2. Ladies Drink: Minum 30 mnt + Private 60 mnt El Seven (Temani minum selama 30 menit, bisa langsung private session durasi 60 menit. Khusus untuk Talent EL Seven saja).
+3. Therapist: Berendam + Pijat + Private 90 mnt El Spa (Temani berendam di kolam & lanjut di pijat dahulu, kemudian dilanjutkan dengan private session durasi 90 menit).', 'layanan, beda, perbedaan, lc, drink, therapist, terapis, karaoke, spa'),
 
 ('fr_review', 'Testimoni & Field Report (FR) Tamu',
 'Hal kak , Nggak semua tamu kasih feedback/review, FR sebagian lebih pilih privacy. Tapi kakak nggak usah khawatir ya. Talent EL GROUP semua udah berpengalaman & rutin ikut training. Standar pelayanan kami selalu dijaga biar kakak nyaman & puas. Ditunggu kedatangannya di EL Group ✨', 'fr, review, field report, testimoni, masukan, feedback'),
@@ -285,36 +286,37 @@ Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengece
 
 ('lokasi_cabang', 'Daftar Lokasi & Alamat 6 Outlet EL Group',
 '👥 𝗘𝗟 𝗚𝗥𝗢𝗨𝗣 💕🇮🇩
+Spa Massage, Karaoke, Lounge, Bar, Club
 
-6 Outlet Terbaik di Jakarta & Tangerang
+6 Outlet Terbaik di Jakarta & Tangerang:
 
 📍 𝟭. 𝗘𝗟 𝗖𝗘𝗡𝗧𝗥𝗢
 • EL Centro — Lt. 8
 • EL Spa Pangjay — Lt. 3
 • EL Seven Club — Lt. 2
-📌 Lokasi: Hotel Maxwell, Pangjay — Jakarta Pusat
+📌 Lokasi: Hotel Maxwell, Jl. Pangjay No.40 Jakarta Pusat
 🗺️ Maps: https://g.co/kgs/XsooJhR
 
 📍 𝟮. 𝗘𝗟 𝗙𝗘𝗡𝗜𝗫
 • EL Fenix — Lt. 10
 • EL Spa Kelapa Gading — Lt. 9
-📌 Lokasi: Kelapa Gading — Jakarta Utara
+📌 Lokasi: Tower Harton City Hub, Jl. Boulevard Artha Gading Lt. 9-10, Jakarta Utara
 🗺️ Maps: https://g.co/kgs/boEFS4t
 
 📍 𝟯. 𝗘𝗟 𝗡𝗢𝗥𝗧𝗘
-📌 Lokasi: Pantai Indah Kapuk — Jakarta Utara
+📌 Lokasi: Ruko Galery II Mediterania Blok N8-M8, Jl. Pantai Indah Kapuk, Jakarta Utara
 🗺️ Maps: https://g.co/kgs/2x2ah1j
 
 📍 𝟰. 𝗘𝗟 𝗢𝗥𝗖𝗔
-📌 Lokasi: Green Lake City — Tangerang
+📌 Lokasi: Green Lake City, Ruko Food City No.122-123 Duri Kosambi, Cengkareng
 🗺️ Maps: https://share.google/TxtsO9ADL3uNC6XQU
 
 📍 𝟱. 𝗘𝗟 𝗖𝗔𝗦𝗔
-📌 Lokasi: Gading Serpong — Tangerang
+📌 Lokasi: Ruko Neo Arcade, Jl. CBD Gading No.1-2 Blok A, Tangerang
 🗺️ Maps: https://g.co/kgs/JbtEvHK
 
 📍 𝟲. 𝗘𝗟 𝗠𝗘𝗠𝗘𝗡𝗧𝗢
-📌 Lokasi: Jakarta Selatan
+📌 Lokasi: Tappalunia, Jl. Wijaya I No.21, Petogogan, Kec. Kebayoran Baru, Jakarta Selatan
 🗺️ Maps: https://share.google/xsynzLTqGqXn4hQ0v
 
 💕 EL GROUP — Your Premium Entertainment & Relaxation Destination', 'lokasi, cabang, alamat, outlet, dimana, mana saja, berapa cabang, maps, hotel maxwell, pangjay, pik, kelapa gading, glc, gading serpong, jaksel');
