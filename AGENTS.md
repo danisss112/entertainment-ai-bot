@@ -21,9 +21,10 @@ Dokumen ini berisi konfigurasi tetap, aturan sistem, arsitektur, dan SOP yang se
 - **Instance Name**: `elgroup_bot`
 - **Database Schema**: Terisolasi pada PostgreSQL URI `?schema=evolution_api`
 - **Cache Config**: `CACHE_REDIS_ENABLED=false` & `CACHE_LOCAL_ENABLED=true` (tanpa Redis server luar).
-- **Webhook URL**: `https://n8n.madamtikael.id/webhook/whatsapp-incoming` dengan event `MESSAGES_UPSERT`.
+- **Webhook URL Internal (Docker)**: `http://entertainment_n8n:5678/webhook/whatsapp-incoming` dengan event `MESSAGES_UPSERT`.
 - **Kirim Teks WA**: `POST http://evolution-api:8080/message/sendText/elgroup_bot`
 - **Kirim Gambar WA**: `POST http://evolution-api:8080/message/sendMedia/elgroup_bot`
+- **Halaman Scan QR**: `https://tikael.madamtikael.id/scan.html` (Gambar statis: `scan.png`).
 
 ---
 
@@ -63,12 +64,16 @@ Dokumen ini berisi konfigurasi tetap, aturan sistem, arsitektur, dan SOP yang se
 
 ---
 
-## 💆‍♀️ 6. SOP ROOM SERVICE (BY MADAM TIKA)
-Setiap kali tamu meminta atau menanyakan **Rules / SOP / SOP Room Service** (baik lewat tombol menu `📋 RULES`, perintah `/rules`, atau chat biasa):
-- **Wajib Ingatkan**:
-  `⚠️ WAJIB IKUTI SOP ⚠️`
-  `Demi kenyamanan bersama 👍🏻`
-- **8 Rangkaian Layanan SOP Room Service**:
+## 💆‍♀️ 6. SOP ROOM SERVICE & 3 FOTO RULES LENGKAP
+Setiap kali tamu meminta atau menanyakan **Rules / SOP / SOP Room Service** (baik lewat tombol menu `📋 RULES`, perintah `/rules`, atau chat biasa), bot mengirimkan **3 Foto Berurutan**:
+1. 🖼️ **Foto 1 (Rules Attention Guys)**: `https://tikael.madamtikael.id/botikar2c.jpeg`
+   - *Caption*: `📌 <b>ATTENTION GUYS</b>\nMau ke EL Group ?\nWajib baca dulu ya !`
+2. 🖼️ **Foto 2 (3 Pilihan Layanan)**: `https://tikael.madamtikael.id/rules_layanan.jpeg`
+   - *Caption*: `<b>EL GROUP - 3 PILIHAN:</b>\n\nMau booking yang mana ?`
+3. 🖼️ **Foto 3 (Poster SOP Room Service Pink)**: `https://tikael.madamtikael.id/sop_room.jpeg`
+   - *Caption*: `⚠️ <b>WAJIB IKUTI SOP</b> ⚠️\nDemi kenyamanan bersama 👍🏻`
+
+- **8 Rangkaian Layanan SOP Room Service (By Madam Tika)**:
   1. 👣 **Baby shower**
   2. 🪷 **Massage relaxsasi sensual**
   3. 🤍 **Body message (BM)**
@@ -77,18 +82,38 @@ Setiap kali tamu meminta atau menanyakan **Rules / SOP / SOP Room Service** (bai
   6. 🤲✨ **Hand job (HJ)**
   7. 💨 **Blow job (BJ)**
   8. 💕 **Fuck job (FJ)**
-- **Foto Pendukung Rules**:
-  - `http://tikael.madamtikael.id/rules_sop.jpeg` (Attention Guys / Barcode SOP)
-  - `http://tikael.madamtikael.id/rules_layanan.jpeg` (3 Pilihan Layanan: LC, Ladies Drink, Therapist)
+
+> ⚠️ **ATURAN WAJIB URL FOTO:** Selalu gunakan protokol **`https://`** untuk semua link foto (`https://tikael.madamtikael.id/...`) agar Telegram tidak memblokir download akibat HTTP-to-HTTPS redirect.
 
 ---
 
-## 🛠️ 7. WORKFLOW GENERATION & CODING RULES
+## 🧠 7. DUAL-ENGINE AI CS (GROQ PRIMARY + GOOGLE GEMINI BACKUP)
+Untuk menjamin bot tidak pernah mati saat kuota gratisan Groq habis:
+1. **Engine Utama**: **Groq Chat Model** (`llama-3.1-8b-instant`)
+   - Kapasitas tinggi: 20.000 TPM / 500.000 TPD.
+   - Respon super cepat (< 500ms).
+   - Window Memory Buffer dipatok `contextWindowLength: 4` (menghemat token 60%).
+2. **Engine Cadangan (Auto-Fallback)**: **Google Gemini Chat Model** (`gemini-1.5-flash`)
+   - Kuota gratis: 1.000.000 TPM / 15 RPM.
+   - Aktif otomatis via jalur error (`onError: continueErrorOutput`) jika Groq terkena Rate Limit 429 atau error server.
+3. **Omnichannel Unified Router**: Keduanya mengalir ke node yang sama (`Send AI Reply Smart`) untuk dikirim ke Telegram maupun WhatsApp.
+
+---
+
+## 🚀 8. DEPLOYMENT & ASSET SYNC AUTOMATION
+- **Script Deploy**: `deploy.sh`
+  - Menggunakan `git stash` sebelum pull agar perubahan lokal VPS tidak memicu error merge conflict.
+  - Otomatis menyinkronkan semua foto dari folder `assets/*` ke direktori web aaPanel `/www/wwwroot/tikael*/`.
+- **Perintah Deploy di VPS**:
+  ```bash
+  bash deploy.sh
+  ```
 - **Generator Script**: `scratch/build_clean_workflow.js`
 - **Output Target**: `workflows/master_bot_workflow.json`
-- **Aturan Pemanggilan Node di n8n**:
-  - Selalu gunakan `.first().json` (contoh: `$('Is AI Needed').first().json`) dan **HINDARI** `.item.json` untuk mencegah error *Paired item data unavailable* di n8n.
-- **Trigger Omnichannel**:
-  - `Telegram Webhook` -> `Has Text or Callback` -> `Parse & Send Direct Reply` -> Routing
-  - `WhatsApp Webhook` -> `Parse WhatsApp Message` -> Routing (`Is Update Session`, `Is Barcode Request`, `Is AI Needed`)
+- **Aturan Node n8n**: Selalu gunakan `.first().json` (contoh: `$('Is AI Needed').first().json`) dan **HINDARI** `.item.json`.
 
+---
+
+## 📢 9. CATATAN TELEGRAM SPONSORED ADS
+- Iklan bersponsor yang sesekali muncul di chat bot untuk pengguna non-premium adalah fitur bawaan resmi platform Telegram untuk semua bot dengan >1.000 pengguna bulanan.
+- Iklan disuntikkan langsung oleh aplikasi Telegram dan tidak dapat dimatikan via kode bot. Pengguna Telegram Premium otomatis bebas dari iklan ini.
