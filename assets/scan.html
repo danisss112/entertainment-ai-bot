@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan QR WhatsApp - EL Group Bot</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .card {
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #38bdf8;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .qr-box {
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 15px;
+      display: inline-block;
+      margin-bottom: 20px;
+      min-width: 250px;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    img {
+      max-width: 260px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .status {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .status.waiting { background: #f59e0b; color: #000; }
+    .status.connected { background: #10b981; color: #fff; }
+    .btn {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn:hover { background: #0369a1; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>📱 Scan QR WhatsApp EL Group</h1>
+    <p>Buka WhatsApp di HP ➡️ Perangkat Tertaut ➡️ Scan QR di bawah ini:</p>
+    
+    <div id="status-badge" class="status waiting">⏳ Menyiapkan QR Code...</div>
+    
+    <div class="qr-box">
+      <img id="qr-image" src="" alt="QR Code" style="display:none;" />
+      <div id="qr-loader" style="color:#0f172a; font-size:13px; font-weight:bold;">Memuat QR...</div>
+    </div>
+    
+    <div>
+      <button class="btn" onclick="fetchQR()">🔄 Refresh QR Baru</button>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://' + window.location.hostname + ':8080';
+    const API_KEY = 'elgroup_wa_secret_2026';
+    const INSTANCE = 'elgroup_bot';
+
+    async function fetchQR() {
+      const loader = document.getElementById('qr-loader');
+      const img = document.getElementById('qr-image');
+      const badge = document.getElementById('status-badge');
+
+      loader.style.display = 'block';
+      loader.innerText = 'Mengambil QR Code terbaru...';
+      img.style.display = 'none';
+
+      try {
+        // 1. Check connection state first
+        const stateRes = await fetch(`http://154.19.37.87:8080/instance/connectionState/${INSTANCE}`, {
+          headers: { 'apikey': API_KEY }
+        });
+        const stateJson = await stateRes.json();
+
+        if (stateJson?.instance?.state === 'open') {
+          badge.className = 'status connected';
+          badge.innerText = '✅ WhatsApp Sudah Terhubung (Connected)!';
+          loader.innerText = 'Bot WhatsApp Aktif & Siap Digunakan!';
+          return;
+        }
+
+        // 2. Fetch fresh QR Code
+        const res = await fetch(`http://154.19.37.87:8080/instance/connect/${INSTANCE}`, {
+          headers: { 'apikey': API_KEY }
+        });
+        const data = await res.json();
+
+        if (data.base64) {
+          img.src = data.base64;
+          img.style.display = 'block';
+          loader.style.display = 'none';
+          badge.className = 'status waiting';
+          badge.innerText = '⚡ Silakan Scan Sekarang';
+        } else if (data.instance?.state === 'open') {
+          badge.className = 'status connected';
+          badge.innerText = '✅ WhatsApp Sudah Terhubung (Connected)!';
+          loader.innerText = 'Bot WhatsApp Aktif!';
+        } else {
+          loader.innerText = JSON.stringify(data);
+        }
+      } catch (err) {
+        loader.innerText = 'Gagal memuat QR: ' + err.message;
+      }
+    }
+
+    fetchQR();
+    // Auto refresh every 20 seconds
+    setInterval(fetchQR, 20000);
+  </script>
+</body>
+</html>
