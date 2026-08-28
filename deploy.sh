@@ -3,7 +3,8 @@
 # AUTO DEPLOY SCRIPT FOR ENTERTAINMENT AI ASSISTANT
 # =============================================================================
 
-echo "🔄 Pulling latest changes from Git repository..."
+echo "🔄 Stashing any local changes & pulling latest from Git..."
+git stash
 git pull origin main
 
 echo "🐳 Rebuilding and restarting Docker containers..."
