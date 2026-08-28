@@ -272,6 +272,20 @@ Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengece
 3. Dibutuhkan Reservasi & Barcode untuk akses masuk & akses lift setiap kali mau datang.
 4. Barcode di-scan di security saat kedatangan.', 'sop, barcode, lift, keamanan, security, reservasi, akses, rules, aturan'),
 
+('sop_room_service', 'SOP Room Service Resmi EL Group By Madam Tika',
+'⚠️ WAJIB IKUTI SOP ⚠️
+Demi kenyamanan bersama 👍🏻
+
+👑 SOP ROOM SERVICE (By Madam Tika):
+1. 👣 Baby shower
+2. 🪷 Massage relaxsasi sensual
+3. 🤍 Body message (BM)
+4. 🐾 Mandi kucing (MK)
+5. 🥭 Petik mangga (PM)
+6. 🤲✨ Hand job (HJ)
+7. 💨 Blow job (BJ)
+8. 💕 Fuck job (FJ)', 'sop, room service, layanan kamar, baby shower, massage, bm, mk, pm, hj, bj, fj, aturan room, rules, ketentuan'),
+
 ('layanan_options', 'Perbedaan Layanan LC, Ladies Drink & Therapist',
 'Hai kak 👋 EL Group ada 3 pilihan:
 1. LC (Ladies Company): Karaoke + Private 60 mnt (Bisa karaoke terlebih dahulu dan bisa langsung Private Session 1 voucher durasi 60 menit).
