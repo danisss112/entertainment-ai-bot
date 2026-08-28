@@ -13,4 +13,12 @@ docker compose up -d
 echo "🧹 Cleaning up unused Docker images..."
 docker image prune -f
 
+echo "🖼️ Syncing static assets to web root..."
+for dir in /www/wwwroot/tikael.madamtikael.id /www/wwwroot/tikael /www/wwwroot/tika /var/www/html; do
+  if [ -d "$dir" ]; then
+    cp -rf assets/* "$dir/"
+    echo "Copied assets to $dir"
+  fi
+done
+
 echo "✅ Deployment completed successfully!"
