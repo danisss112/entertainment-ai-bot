@@ -255,6 +255,20 @@ Demi kenyamanan bersama 👍🏻
 7. 💨 Blow job (BJ)
 8. 💕 Fuck job (FJ)', 'sop, room service, layanan kamar, baby shower, massage, bm, mk, pm, hj, bj, fj, aturan room, rules, ketentuan'),
 
+('pool', 'Fasilitas Pool, Kolam Panas Dingin & Paket Pool Spa KTV',
+'Ada kak 😊 Di EL Group fasilitas pool / kolam tersedia dalam 2 pilihan:
+
+1. 🌊 <b>Fasilitas Kolam Spa (Kolam Panas, Kolam Dingin, Sauna & Steam):</b>
+• <b>EL SPA PANGJAY</b> (Hotel Maxwell Lt. 3, Jakpus)
+• <b>EL SPA GADING</b> (Tower Harton City Hub Lt. 9, Kelapa Gading)
+(Tersedia layanan Therapist: temani berendam di kolam + pijat relaksasi total 90 menit)
+
+2. 🎤 <b>Paket Pool Spa KTV (Karaoke + Bikini Party 👙 + Room Service 4 Jam):</b>
+• <b>EL CENTRO</b> (Hotel Maxwell Lt. 8, Jakpus)
+• <b>EL FENIX</b> (Tower Harton City Hub Lt. 10, Kelapa Gading)
+
+Kakak berminat berkunjung ke outlet yang mana nih? Biar kami bantu cek ketersediaannya ya kak ✨', 'pool, kolam, berendam, kolam renang, kolam panas, kolam dingin, whirlpool, sauna, steam, bikini'),
+
 ('layanan_options', 'Perbedaan Layanan LC, Ladies Drink & Therapist',
 'Hai kak 👋 EL Group ada 3 pilihan layanan:
 1. LC (Ladies Company): Karaoke + Private 60 mnt (Bisa karaoke terlebih dahulu dan bisa langsung Private Session 1 voucher durasi 60 menit)
