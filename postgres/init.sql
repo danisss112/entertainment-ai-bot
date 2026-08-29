@@ -166,6 +166,13 @@ Member digital resmi: https://app.elgroupapp.com/', 'member, membership, daftar,
 2. Wajib membayar DP (uang muka) 50%.
 3. Bisa request di semua Outlet EL Group.', 'celeb, booking, dp, h-1, price list celeb'),
 
+('promo', 'Informasi Promo, Diskon & Event Harian', 
+'Ada kak 😊 Promo dan update harian selalu kami bagikan di Grup Telegram resmi kami!
+
+🔗 Join Grup Telegram: https://t.me/spakaraokejakartapusat
+
+Silakan gabung agar tidak ketinggalan info diskon & promo terbaru ya kak ✨', 'promo, diskon, discount, potongan, event, promo hari ini, promo malam ini, voucher'),
+
 ('payment', 'Metode Pembayaran', 
 'Bisa kak 😊
 Kami menerima:
