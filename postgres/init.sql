@@ -153,8 +153,8 @@ Member digital resmi: https://app.elgroupapp.com/', 'member, membership, daftar,
 - Durasi 60 menit, 2x 💦 (1x FJ + 1x HJ).
 - Note: All You Can F (90 menit, max 3 ladies 30 menit, khusus grade GOLD).', 'jackpot, double, gold, seven'),
 
-('ktv', 'Paket Karaoke KTV & Party', 
-'🎤 PAKET KARAOKE KTV & PARTY (Tersedia di EL CENTRO & EL FENIX):
+('ktv', 'Paket Karaoke KTV, Party & Pool Spa', 
+'🎤 PAKET KARAOKE KTV & PARTY (Tersedia di EL CENTRO, EL FENIX & EL MEMENTO):
 - Karaoke Regular: 2 Voucher (Durasi 3 Jam: 2 jam KTV + 1 jam Room Service).
 - Karaoke Party: 4 Voucher (Durasi 4 Jam: 2 jam KTV + 1 jam Party + 1 jam Room Service).
 - Pool Spa: 3 Voucher (Durasi 4 Jam: 2 jam KTV + 1 jam Bikini + 1 jam Room Service).
