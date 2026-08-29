@@ -256,11 +256,13 @@ Demi kenyamanan bersama 👍🏻
 8. 💕 Fuck job (FJ)', 'sop, room service, layanan kamar, baby shower, massage, bm, mk, pm, hj, bj, fj, aturan room, rules, ketentuan'),
 
 ('pool', 'Fasilitas Pool, Kolam Panas Dingin & Paket Pool Spa KTV',
-'Ada kak 😊 Di EL Group fasilitas pool / kolam tersedia dalam 2 pilihan:
+'Ada kak 😊 Di EL Group fasilitas pool / kolam tersedia di beberapa outlet pilihan:
 
-1. 🌊 <b>Fasilitas Kolam Spa (Kolam Panas, Kolam Dingin, Sauna & Steam):</b>
+1. 🌊 <b>Fasilitas Kolam Spa & Berendam (Kolam Panas, Kolam Dingin, Sauna & Steam):</b>
 • <b>EL SPA PANGJAY</b> (Hotel Maxwell Lt. 3, Jakpus)
 • <b>EL SPA GADING</b> (Tower Harton City Hub Lt. 9, Kelapa Gading)
+• <b>EL ORCA</b> (Green Lake City, Jakbar)
+• <b>EL MEMENTO</b> (Tappalunia, Kebayoran Baru Jaksel)
 (Tersedia layanan Therapist: temani berendam di kolam + pijat relaksasi total 90 menit)
 
 2. 🎤 <b>Paket Pool Spa KTV (Karaoke + Bikini Party 👙 + Room Service 4 Jam):</b>
