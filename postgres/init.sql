@@ -224,9 +224,9 @@ Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengece
 'Untuk kebutuhan tertentu, identitas dapat diperlukan sesuai kebijakan outlet.
 Jika kakak ingin memastikan sebelum datang, silakan sebutkan outlet yang ingin dikunjungi, nanti kami bantu informasikan.', 'ktp, usia, identitas, umur, id'),
 
-('rekomendasi_talent', 'Rekomendasi Talent / Ladies / Therapist di Cabang (Handover Admin)',
-'Mohon bersabar ya kak, untuk rekomendasi talent/therapist sudah kami teruskan dan akan segera diinfokan langsung oleh Madam Tika 🙏✨
-[ESCALATE_QUESTION: Tanya Rekomendasi Talent/Therapist]', 'recomen, recomended, rekomendasi siapa, siapa yang bagus, siapa yang cantik, ladies bagus, therapist rekomen, siapa yg recomen, siapa recomended, rekomendasi ladies, rekomendasi therapist'),
+('rekomendasi_talent', 'Informasi, Rekomendasi & Ketersediaan Talent / LC / Ladies / Therapist (Handover Admin)',
+'Mohon bersabar ya kak, untuk informasi & rekomendasi therapist/LC sudah kami teruskan dan akan segera diinfokan langsung oleh Madam Tika 🙏✨
+[ESCALATE_QUESTION: Tanya Info/Rekomendasi Therapist/LC]', 'recomen, recomended, rekomendasi siapa, siapa yang bagus, siapa yang cantik, ladies bagus, therapist rekomen, siapa yg recomen, siapa recomended, rekomendasi ladies, rekomendasi therapist, siapa yang ready, siapa yang masuk, absen ladies, absen therapist, foto ladies, spill ladies, katalog ladies, lc bagus, lc rekomen, therapist gading, therapist centro, therapist norte, therapist fenix'),
 
 ('recruitment', 'Lowongan Kerja / Recruitment', 
 'Saat ini kami menerima kandidat untuk posisi:
