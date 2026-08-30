@@ -224,6 +224,10 @@ Kami akan membantu meneruskan informasi tersebut kepada tim outlet untuk pengece
 'Untuk kebutuhan tertentu, identitas dapat diperlukan sesuai kebijakan outlet.
 Jika kakak ingin memastikan sebelum datang, silakan sebutkan outlet yang ingin dikunjungi, nanti kami bantu informasikan.', 'ktp, usia, identitas, umur, id'),
 
+('rekomendasi_talent', 'Rekomendasi Talent / Ladies / Therapist di Cabang (Handover Admin)',
+'Mohon bersabar ya kak, untuk rekomendasi talent/therapist sudah kami teruskan dan akan segera diinfokan langsung oleh Madam Tika 🙏✨
+[ESCALATE_QUESTION: Tanya Rekomendasi Talent/Therapist]', 'recomen, recomended, rekomendasi siapa, siapa yang bagus, siapa yang cantik, ladies bagus, therapist rekomen, siapa yg recomen, siapa recomended, rekomendasi ladies, rekomendasi therapist'),
+
 ('recruitment', 'Lowongan Kerja / Recruitment', 
 'Saat ini kami menerima kandidat untuk posisi:
 • LC
